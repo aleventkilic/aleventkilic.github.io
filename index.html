@@ -2,6 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4E45E1Q9WM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4E45E1Q9WM');
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ali Levent Kilic — Visual Resume Portfolio</title>
 <style>
@@ -209,7 +216,7 @@
     <div>
       <h1 style="font-size:22px; font-weight:500; color:var(--text);">Ali Levent Kilic</h1>
       <div style="font-size:13px; color:#0F6E56; font-weight:500; margin-top:3px;">Senior Director — Critical Operations &amp; Infrastructure</div>
-      <div style="font-size:12px; color:var(--text2); margin-top:4px;">Leesburg, VA &nbsp;·&nbsp; levent.kilic.contact@gmail.com &nbsp;·&nbsp; linkedin.com/in/aleventkilic</div>
+      <div style="font-size:12px; color:var(--text2); margin-top:4px;">Leesburg, VA &nbsp;·&nbsp; levent.kilic.contact[at]gmail.com &nbsp;·&nbsp; linkedin.com/in/aleventkilic</div>
       <div style="margin-top:6px;">
         <span class="tag">20+ years critical infrastructure</span>
         <span class="tag">24/7 mission-critical ops</span>
@@ -359,7 +366,7 @@
   </div>
 
   <div class="footer-strip">
-    <span><span class="footer-dot"></span>Ali Levent Kilic — levent.kilic.contact@gmail.com</span>
+    <span><span class="footer-dot"></span>Ali Levent Kilic — levent.kilic.contact[at]gmail.com</span>
     <span><span class="footer-dot"></span>Leesburg, VA · Director of Operations · VA/MD/DC</span>
   </div>
 </div>
@@ -472,7 +479,7 @@
   </div>
 
   <div class="footer-strip">
-    <span><span class="footer-dot"></span>Ali Levent Kilic — levent.kilic.contact@gmail.com</span>
+    <span><span class="footer-dot"></span>Ali Levent Kilic — levent.kilic.contact[at]gmail.com</span>
     <span><span class="footer-dot"></span>Leesburg, VA · Director of Operations · VA/MD/DC</span>
   </div>
 </div>
@@ -521,7 +528,7 @@
   </div>
 
   <div class="footer-strip">
-    <span><span class="footer-dot"></span>Ali Levent Kilic — levent.kilic.contact@gmail.com</span>
+    <span><span class="footer-dot"></span>Ali Levent Kilic — levent.kilic.contact[at]gmail.com</span>
     <span><span class="footer-dot"></span>Leesburg, VA · Director of Operations · VA/MD/DC</span>
   </div>
 </div>
@@ -647,20 +654,4 @@ function buildSkills(containerId, skills) {
 
 function switchRole(key) {
   document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('tab-' + key).classList.add('active');
-  const r = roles[key];
-  ['sec1','sec2','sec3','sec4','sec5'].forEach(s => {
-    document.getElementById(s + '-title').textContent = r[s].title;
-    buildSkills(s + '-skills', r[s].skills);
-  });
-  document.getElementById('sum-full').textContent = r.summary.full;
-  document.getElementById('sum-strong').textContent = r.summary.strong;
-  document.getElementById('sum-pct').textContent = r.summary.pct;
-  document.getElementById('verdict-title').textContent = r.verdict.title;
-  document.getElementById('verdict-body').textContent = r.verdict.body;
-}
-
-switchRole('hyper');
-</script>
-</body>
-</html>
+  document.getElementByI
