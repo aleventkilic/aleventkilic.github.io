@@ -2,13 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4E45E1Q9WM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-4E45E1Q9WM');
-</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ali Levent Kilic — Visual Resume Portfolio</title>
 <style>
@@ -216,7 +209,7 @@
     <div>
       <h1 style="font-size:22px; font-weight:500; color:var(--text);">Ali Levent Kilic</h1>
       <div style="font-size:13px; color:#0F6E56; font-weight:500; margin-top:3px;">Senior Director — Critical Operations &amp; Infrastructure</div>
-      <div style="font-size:12px; color:var(--text2); margin-top:4px;">Leesburg, VA &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="325e5744575c461c595b5e5b511c515d5c4653514672555f535b5e1c515d5f">[email&#160;protected]</a> &nbsp;·&nbsp; linkedin.com/in/aleventkilic</div>
+      <div style="font-size:12px; color:var(--text2); margin-top:4px;">Leesburg, VA &nbsp;·&nbsp; levent.kilic.contact@gmail.com &nbsp;·&nbsp; linkedin.com/in/aleventkilic</div>
       <div style="margin-top:6px;">
         <span class="tag">20+ years critical infrastructure</span>
         <span class="tag">24/7 mission-critical ops</span>
@@ -366,7 +359,7 @@
   </div>
 
   <div class="footer-strip">
-    <span><span class="footer-dot"></span>Ali Levent Kilic — <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="87ebe2f1e2e9f3a9eceeebeee4a9e4e8e9f3e6e4f3c7e0eae6eeeba9e4e8ea">[email&#160;protected]</a></span>
+    <span><span class="footer-dot"></span>Ali Levent Kilic — levent.kilic.contact@gmail.com</span>
     <span><span class="footer-dot"></span>Leesburg, VA · Director of Operations · VA/MD/DC</span>
   </div>
 </div>
@@ -479,7 +472,7 @@
   </div>
 
   <div class="footer-strip">
-    <span><span class="footer-dot"></span>Ali Levent Kilic — <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="066a6370636872286d6f6a6f65286569687267657246616b676f6a2865696b">[email&#160;protected]</a></span>
+    <span><span class="footer-dot"></span>Ali Levent Kilic — levent.kilic.contact@gmail.com</span>
     <span><span class="footer-dot"></span>Leesburg, VA · Director of Operations · VA/MD/DC</span>
   </div>
 </div>
@@ -528,12 +521,12 @@
   </div>
 
   <div class="footer-strip">
-    <span><span class="footer-dot"></span>Ali Levent Kilic — <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0a666f7c6f647e246163666369246965647e6b697e4a6d676b636624696567">[email&#160;protected]</a></span>
+    <span><span class="footer-dot"></span>Ali Levent Kilic — levent.kilic.contact@gmail.com</span>
     <span><span class="footer-dot"></span>Leesburg, VA · Director of Operations · VA/MD/DC</span>
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
@@ -654,4 +647,20 @@ function buildSkills(containerId, skills) {
 
 function switchRole(key) {
   document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
-  document.getElementByI
+  document.getElementById('tab-' + key).classList.add('active');
+  const r = roles[key];
+  ['sec1','sec2','sec3','sec4','sec5'].forEach(s => {
+    document.getElementById(s + '-title').textContent = r[s].title;
+    buildSkills(s + '-skills', r[s].skills);
+  });
+  document.getElementById('sum-full').textContent = r.summary.full;
+  document.getElementById('sum-strong').textContent = r.summary.strong;
+  document.getElementById('sum-pct').textContent = r.summary.pct;
+  document.getElementById('verdict-title').textContent = r.verdict.title;
+  document.getElementById('verdict-body').textContent = r.verdict.body;
+}
+
+switchRole('hyper');
+</script>
+</body>
+</html>
