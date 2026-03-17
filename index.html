@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ali Levent Kilic — Visual Resume Portfolio</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --teal-50: #E1F5EE; --teal-100: #9FE1CB; --teal-400: #1D9E75; --teal-500: #5DCAA5;
+    --teal-600: #0F6E56; --teal-700: #085041; --teal-900: #04342C;
+    --amber-50: #FAEEDA; --amber-100: #FAC775; --amber-600: #854F0B; --amber-800: #633806; --amber-900: #412402;
+    --blue-50: #E6F1FB; --blue-100: #B5D4F4; --blue-700: #0C447C; --blue-900: #042C53;
+    --purple-50: #EEEDFE; --purple-700: #3C3489;
+    --green-50: #EAF3DE; --green-800: #27500A;
+    --gray-100: #D3D1C7; --gray-400: #888780; --gray-500: #5F5E5A;
+    --bg: #ffffff; --bg2: #f5f5f3; --bg3: #eeede9;
+    --text: #1a1a18; --text2: #5f5e5a; --text3: #888780;
+    --border: rgba(0,0,0,0.1); --border2: rgba(0,0,0,0.18);
+    --radius-md: 8px; --radius-lg: 12px;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1c1a; --bg2: #252523; --bg3: #2e2e2b;
+      --text: #f0efe9; --text2: #a8a79f; --text3: #6b6a63;
+      --border: rgba(255,255,255,0.1); --border2: rgba(255,255,255,0.18);
+      --teal-50: #043428; --teal-100: #085041; --teal-400: #1D9E75; --teal-500: #5DCAA5;
+      --teal-600: #9FE1CB; --teal-700: #E1F5EE; --teal-900: #E1F5EE;
+      --amber-50: #2a1c06; --amber-100: #412402; --amber-600: #EF9F27; --amber-800: #FAC775; --amber-900: #FAEEDA;
+      --blue-50: #042035; --blue-100: #0C447C; --blue-700: #85B7EB; --blue-900: #E6F1FB;
+      --purple-50: #1a1838; --purple-700: #AFA9EC;
+      --green-50: #0f2206; --green-800: #C0DD97;
+    }
+  }
+  body { font-family: var(--font); background: var(--bg3); color: var(--text); line-height: 1.6; }
+
+  /* NAV */
+  .nav { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 0.5px solid var(--border); padding: 0 2rem; display: flex; align-items: center; gap: 0; }
+  .nav-brand { font-size: 13px; font-weight: 500; color: var(--text); padding: 14px 0; margin-right: 2rem; white-space: nowrap; }
+  .nav-tabs { display: flex; gap: 0; }
+  .nav-tab { font-size: 12px; color: var(--text2); padding: 14px 16px; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; white-space: nowrap; }
+  .nav-tab:hover { color: var(--text); }
+  .nav-tab.active { color: #0F6E56; border-bottom-color: #1D9E75; font-weight: 500; }
+
+  /* PAGES */
+  .page { display: none; max-width: 960px; margin: 0 auto; padding: 2.5rem 2rem; }
+  .page.active { display: block; }
+
+  /* SHARED */
+  .section-label { font-size: 10px; font-weight: 500; color: var(--text3); letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 10px; }
+  .card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; }
+  .tag { display: inline-block; background: var(--teal-50); color: var(--teal-700); font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-right: 5px; margin-top: 4px; }
+  .metric { background: var(--bg2); border-radius: var(--radius-md); padding: 12px 14px; }
+  .metric-val { font-size: 22px; font-weight: 500; color: #1D9E75; line-height: 1; margin-bottom: 3px; }
+  .metric-label { font-size: 11px; color: var(--text2); line-height: 1.4; }
+  .footer-strip { display: flex; gap: 16px; flex-wrap: wrap; padding-top: 1.25rem; margin-top: 1rem; border-top: 0.5px solid var(--border); align-items: center; font-size: 12px; color: var(--text2); }
+  .footer-dot { width: 6px; height: 6px; border-radius: 50%; background: #1D9E75; flex-shrink: 0; display: inline-block; margin-right: 4px; vertical-align: middle; }
+  .page-header { margin-bottom: 1.75rem; padding-bottom: 1.5rem; border-bottom: 0.5px solid var(--border); }
+  .page-header h1 { font-size: 20px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .page-header p { font-size: 13px; color: var(--text2); }
+
+  /* ===== PIECE 1: DASHBOARD ===== */
+  .dash-header { display: flex; align-items: center; gap: 20px; margin-bottom: 1.75rem; padding-bottom: 1.5rem; border-bottom: 0.5px solid var(--border); }
+  .avatar { width: 60px; height: 60px; border-radius: 50%; background: var(--teal-50); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 500; color: var(--teal-600); flex-shrink: 0; }
+  .dash-metrics { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; margin-bottom: 1.5rem; }
+  .two-col { display: grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr); gap: 16px; margin-bottom: 1.5rem; }
+  .tl-item { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-dot { width: 8px; height: 8px; border-radius: 50%; background: #1D9E75; margin-top: 5px; flex-shrink: 0; }
+  .tl-dot.gray { background: var(--gray-400); }
+  .tl-yr { font-size: 11px; color: var(--text3); min-width: 36px; flex-shrink: 0; margin-top: 3px; }
+  .tl-title { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.3; }
+  .tl-sub { font-size: 12px; color: var(--text2); margin-top: 2px; line-height: 1.4; }
+  .tl-badge { display: inline-block; background: var(--teal-50); color: var(--teal-700); font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 10px; margin-top: 4px; }
+  .skill-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .skill-row:last-child { margin-bottom: 0; }
+  .skill-name { font-size: 11px; color: var(--text2); width: 140px; flex-shrink: 0; }
+  .skill-bar-bg { flex: 1; height: 5px; background: var(--bg2); border-radius: 3px; overflow: hidden; }
+  .skill-bar-fill { height: 100%; border-radius: 3px; background: #1D9E75; }
+  .skill-bar-fill.mid { background: #5DCAA5; }
+  .target-strip { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; margin-bottom: 1.5rem; }
+  .target-card { border: 0.5px solid var(--border); border-radius: var(--radius-md); padding: 10px 12px; text-align: center; background: var(--bg); }
+  .tc-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--teal-50); display: flex; align-items: center; justify-content: center; margin: 0 auto 6px; }
+  .tc-label { font-size: 11px; font-weight: 500; color: var(--text); }
+  .tc-sub { font-size: 10px; color: var(--text2); margin-top: 2px; }
+  .ai-block { background: var(--bg2); border-radius: var(--radius-md); padding: 12px 14px; }
+  .ai-title { font-size: 11px; font-weight: 500; color: #0F6E56; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .ai-pulse { width: 7px; height: 7px; border-radius: 50%; background: #1D9E75; flex-shrink: 0; }
+  .tool-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+  .tool-pill { background: var(--bg); border: 0.5px solid var(--border); border-radius: 20px; font-size: 10px; color: var(--text2); padding: 3px 9px; }
+  .tool-pill.ai { background: var(--teal-50); border-color: var(--teal-100); color: var(--teal-700); }
+  .ai-note { font-size: 11px; color: var(--text2); line-height: 1.5; }
+
+  /* ===== PIECE 2: PARALLEL WORLDS ===== */
+  .pw-col-headers { display: grid; grid-template-columns: minmax(0,1fr) 48px minmax(0,1fr); margin-bottom: 10px; }
+  .pw-col-head { padding: 10px 16px; border-radius: var(--radius-md); text-align: center; }
+  .pw-col-head.energy { background: var(--amber-50); }
+  .pw-col-head.energy .ch-label { font-size: 12px; font-weight: 500; color: var(--amber-800); }
+  .pw-col-head.energy .ch-sub { font-size: 11px; color: var(--amber-600); margin-top: 2px; }
+  .pw-col-head.dc { background: var(--teal-50); }
+  .pw-col-head.dc .ch-label { font-size: 12px; font-weight: 500; color: var(--teal-700); }
+  .pw-col-head.dc .ch-sub { font-size: 11px; color: var(--teal-600); margin-top: 2px; }
+  .pw-grid { display: grid; grid-template-columns: minmax(0,1fr) 48px minmax(0,1fr); }
+  .pw-cat { grid-column: 1/-1; font-size: 10px; font-weight: 500; color: var(--text3); letter-spacing: 0.07em; text-transform: uppercase; margin: 14px 0 8px; padding-bottom: 4px; border-bottom: 0.5px solid var(--border); }
+  .pw-cell { padding: 11px 14px; border-radius: var(--radius-md); }
+  .pw-cell.energy { background: var(--amber-50); border: 0.5px solid var(--amber-100); }
+  .pw-cell.dc { background: var(--teal-50); border: 0.5px solid var(--teal-100); }
+  .pw-cell .ct { font-size: 12px; font-weight: 500; margin-bottom: 3px; }
+  .pw-cell.energy .ct { color: var(--amber-900); }
+  .pw-cell.dc .ct { color: var(--teal-900); }
+  .pw-cell .cd { font-size: 11px; line-height: 1.5; }
+  .pw-cell.energy .cd { color: var(--amber-600); }
+  .pw-cell.dc .cd { color: var(--teal-600); }
+  .pw-arrow { display: flex; align-items: center; justify-content: center; }
+  .pw-gap { height: 8px; grid-column: 1/-1; }
+  .pw-verdict { background: var(--bg2); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin-top: 1.5rem; display: flex; gap: 14px; align-items: flex-start; }
+  .pw-verdict-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--teal-50); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+
+  /* ===== PIECE 3: TIMELINE ===== */
+  .tl3-metrics { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin-bottom: 1.75rem; }
+  .tl3-legend { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .leg-item { display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--text2); }
+  .leg-node { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #1D9E75; flex-shrink: 0; }
+  .tl3-wrap { position: relative; }
+  .tl3-spine { position: absolute; left: 109px; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
+  .tl3-entry { display: grid; grid-template-columns: 100px 18px minmax(0,1fr); align-items: stretch; }
+  .tl3-yr-col { text-align: right; padding-right: 16px; padding-top: 2px; padding-bottom: 20px; }
+  .tl3-yr { font-size: 12px; font-weight: 500; color: var(--text); display: block; }
+  .tl3-range { font-size: 10px; color: var(--text3); display: block; margin-top: 1px; }
+  .tl3-node-col { display: flex; flex-direction: column; align-items: center; padding-bottom: 20px; position: relative; z-index: 1; }
+  .tl3-node { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #1D9E75; background: var(--bg); flex-shrink: 0; margin-top: 1px; }
+  .tl3-node.dir { background: #1D9E75; border-color: #0F6E56; }
+  .tl3-node.mgr { background: #5DCAA5; border-color: #1D9E75; }
+  .tl3-node.early { background: var(--bg2); border-color: var(--gray-400); }
+  .tl3-connector { flex: 1; width: 1px; background: var(--border); }
+  .tl3-content { padding-left: 16px; padding-bottom: 24px; }
+  .tl3-role { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.3; margin-bottom: 2px; }
+  .tl3-company { font-size: 12px; color: var(--text2); margin-bottom: 8px; }
+  .i-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 7px; }
+  .i-pill { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; }
+  .i-pill.win { background: var(--teal-50); color: var(--teal-700); }
+  .i-pill.scale { background: var(--blue-50); color: var(--blue-700); }
+  .i-pill.tech { background: var(--purple-50); color: var(--purple-700); }
+  .i-pill.safety { background: var(--green-50); color: var(--green-800); }
+  .tl3-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+  .lvl-badge { display: inline-block; font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 10px; margin-bottom: 6px; }
+  .lvl-badge.dir { background: var(--teal-50); color: var(--teal-700); }
+  .lvl-badge.mgr { background: var(--blue-50); color: var(--blue-700); }
+  .lvl-badge.early { background: var(--bg2); color: var(--text2); }
+
+  /* ===== PIECE 4: RADAR ===== */
+  .role-tabs { display: flex; gap: 8px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .role-tab { font-size: 11px; font-weight: 500; padding: 5px 14px; border-radius: 20px; border: 0.5px solid var(--border2); background: var(--bg2); color: var(--text2); cursor: pointer; transition: all 0.15s; }
+  .role-tab.active { background: var(--teal-50); color: var(--teal-700); border-color: var(--teal-100); }
+  .cr-summary { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; margin-bottom: 1.5rem; }
+  .cr-two-col { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 16px; margin-bottom: 1.5rem; }
+  .cr-legend { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .cr-sec-title { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 0.5px solid var(--border); }
+  .cr-skill-section { margin-bottom: 1.25rem; }
+  .cr-skill-section:last-child { margin-bottom: 0; }
+  .cr-skill-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+  .cr-skill-row:last-child { margin-bottom: 0; }
+  .cr-skill-name { font-size: 11px; color: var(--text2); width: 160px; flex-shrink: 0; line-height: 1.3; }
+  .cr-bar-wrap { flex: 1; position: relative; height: 8px; background: var(--bg2); border-radius: 4px; overflow: hidden; }
+  .cr-bar-req { position: absolute; left: 0; top: 0; height: 100%; border-radius: 4px; background: var(--blue-100); opacity: 0.5; }
+  .cr-bar-fill { position: absolute; left: 0; top: 0; height: 100%; border-radius: 4px; background: #1D9E75; }
+  .cr-bar-fill.gap { background: #5DCAA5; }
+  .match-badge { font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 10px; flex-shrink: 0; min-width: 52px; text-align: center; }
+  .match-badge.full { background: var(--teal-50); color: var(--teal-700); }
+  .match-badge.strong { background: var(--green-50); color: var(--green-800); }
+  .match-badge.good { background: var(--blue-50); color: var(--blue-700); }
+  .cr-verdict { background: var(--teal-50); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; display: flex; gap: 14px; align-items: flex-start; }
+  .cr-verdict-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--teal-100); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .cr-verdict-title { font-size: 13px; font-weight: 500; color: var(--teal-900); margin-bottom: 3px; }
+  .cr-verdict-body { font-size: 12px; color: var(--teal-600); line-height: 1.6; }
+
+  @media (max-width: 640px) {
+    .two-col, .cr-two-col { grid-template-columns: 1fr; }
+    .tl3-metrics { grid-template-columns: repeat(2, 1fr); }
+    .dash-metrics, .cr-summary { grid-template-columns: repeat(2, 1fr); }
+    .target-strip { grid-template-columns: 1fr; }
+    .nav { padding: 0 1rem; overflow-x: auto; }
+    .page { padding: 1.5rem 1rem; }
+  }
+  @media print {
+    .nav { position: static; }
+    .page { display: block !important; page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">Ali Levent Kilic</div>
+  <div class="nav-tabs">
+    <div class="nav-tab active" onclick="showPage('p1')">1 — Dashboard</div>
+    <div class="nav-tab" onclick="showPage('p2')">2 — Parallel Worlds</div>
+    <div class="nav-tab" onclick="showPage('p3')">3 — Impact Timeline</div>
+    <div class="nav-tab" onclick="showPage('p4')">4 — Competency Radar</div>
+  </div>
+</nav>
+
+<!-- ============================================================ PIECE 1 -->
+<div class="page active" id="p1">
+
+  <div class="dash-header">
+    <div class="avatar">ALK</div>
+    <div>
+      <h1 style="font-size:22px; font-weight:500; color:var(--text);">Ali Levent Kilic</h1>
+      <div style="font-size:13px; color:#0F6E56; font-weight:500; margin-top:3px;">Senior Director — Critical Operations &amp; Infrastructure</div>
+      <div style="font-size:12px; color:var(--text2); margin-top:4px;">Leesburg, VA &nbsp;·&nbsp; levent.kilic.contact@gmail.com &nbsp;·&nbsp; linkedin.com/in/aleventkilic</div>
+      <div style="margin-top:6px;">
+        <span class="tag">20+ years critical infrastructure</span>
+        <span class="tag">24/7 mission-critical ops</span>
+        <span class="tag">$50M+ portfolio leadership</span>
+        <span class="tag">VA/MD/DC</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Signature achievements</div>
+  <div class="dash-metrics">
+    <div class="metric"><div class="metric-val">900K+</div><div class="metric-label">consecutive safe man-hours — zero lost-time incidents</div></div>
+    <div class="metric"><div class="metric-val">$50M+</div><div class="metric-label">infrastructure portfolio delivered 12% ahead of schedule</div></div>
+    <div class="metric"><div class="metric-val">207</div><div class="metric-label">jurisdictions across 14 states — 20% faster permit-to-construction</div></div>
+  </div>
+
+  <div class="section-label">Target roles</div>
+  <div class="target-strip">
+    <div class="target-card">
+      <div class="tc-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="#0F6E56" stroke-width="1.5"/><path d="M5 8h6M8 5v6" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="tc-label">Hyperscalers</div><div class="tc-sub">AWS · Google · Microsoft</div>
+    </div>
+    <div class="target-card">
+      <div class="tc-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="1" y="4" width="14" height="8" rx="1.5" stroke="#0F6E56" stroke-width="1.5"/><path d="M4 4V3a1 1 0 011-1h6a1 1 0 011 1v1" stroke="#0F6E56" stroke-width="1.5"/><circle cx="5" cy="8" r="1" fill="#0F6E56"/><circle cx="8" cy="8" r="1" fill="#0F6E56"/><circle cx="11" cy="8" r="1" fill="#0F6E56"/></svg></div>
+      <div class="tc-label">Colocation</div><div class="tc-sub">Equinix · Digital Realty</div>
+    </div>
+    <div class="target-card">
+      <div class="tc-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 13L5 4l3 5 3-3 3 5" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="tc-label">DC Construction</div><div class="tc-sub">Build · Commission · Operate</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="section-label" style="margin-bottom:14px;">Career arc</div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-yr">2024</div><div><div class="tl-title">Permitting Manager — Colonial Pipeline</div><div class="tl-sub">207 jurisdictions · Power BI/ArcGIS · 20% faster permitting</div><span class="tl-badge">Multi-state regulatory strategy</span></div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-yr">2023</div><div><div class="tl-title">Manager, Field Projects — Colonial Pipeline</div><div class="tl-sub">$50M+ portfolio · 4 PMs · 8 inspectors · 12% ahead of schedule</div><span class="tl-badge">24/7 critical environment</span></div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-yr">2022</div><div><div class="tl-title">Director of Operations — FTH Oilfield</div><div class="tl-sub">GIS real-time ops · 75% reporting accuracy · 40K ft infrastructure build</div><span class="tl-badge">Remote ops &amp; telemetry</span></div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-yr">2018</div><div><div class="tl-title">General Manager — BOE Midstream</div><div class="tl-sub">900K+ safe man-hours · 50% OPEX reduction · P&amp;L ownership</div><span class="tl-badge">High-reliability ops</span></div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-yr">2014</div><div><div class="tl-title">Critical Facility Site Leader — BOE Midstream</div><div class="tl-sub">Terminal automation · $5–7M revenue · greenfield commissioning</div><span class="tl-badge">IT/OT integration</span></div></div>
+      <div class="tl-item"><div class="tl-dot gray"></div><div class="tl-yr">2011</div><div><div class="tl-title">Sr. Consultant — Ericsson (Turkey)</div><div class="tl-sub">$17M SDH program · 65 sites · live-site commissioning &amp; cutover</div></div></div>
+      <div class="tl-item"><div class="tl-dot gray"></div><div class="tl-yr">2005</div><div><div class="tl-title">Site / Regional Manager — Tyco Fire &amp; Systems</div><div class="tl-sub">Offshore platforms · pipeline IT/OT · 100% on-time delivery</div></div></div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div class="card">
+        <div class="section-label" style="margin-bottom:11px;">Core competencies</div>
+        <div class="skill-row"><span class="skill-name">Critical facility ops</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:97%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Capital project mgmt</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:95%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Safety &amp; EHS</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:98%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Asset integrity &amp; lifecycle</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:93%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Vendor &amp; contractor mgmt</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:94%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Stakeholder &amp; exec comms</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:91%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Regulatory &amp; permitting</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:92%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Commissioning &amp; Cx</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Budget &amp; cost control</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Digital / SCADA / GIS</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Change management</span><div class="skill-bar-bg"><div class="skill-bar-fill mid" style="width:83%"></div></div></div>
+      </div>
+      <div class="card">
+        <div class="ai-block">
+          <div class="ai-title"><div class="ai-pulse"></div>AI &amp; technology fluency</div>
+          <div class="tool-pills">
+            <span class="tool-pill ai">Claude (Anthropic)</span><span class="tool-pill ai">ChatGPT</span><span class="tool-pill ai">Perplexity</span>
+            <span class="tool-pill">Power BI</span><span class="tool-pill">ArcGIS</span><span class="tool-pill">Smartsheet</span><span class="tool-pill">SCADA / HMI</span>
+          </div>
+          <div class="ai-note">Regular AI user — applies AI tools to improve operational decisions, reporting workflows, and data analysis at the Director level.</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="section-label" style="margin-bottom:8px;">Additional strengths</div>
+        <div style="font-size:12px; color:var(--text2); line-height:1.8;">
+          3 languages: English, Turkish, Azerbaijani<br>
+          NATO field experience (First Lieutenant)<br>
+          Civil Air Patrol — GIS damage assessment<br>
+          DOT 49 CFR Part 195 · OSHA HAZWOPER 40hr
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-strip">
+    <span><span class="footer-dot"></span>Seeking Director of Operations · VA/MD/DC</span>
+    <span><span class="footer-dot"></span>Data center · commercial construction · critical facilities</span>
+    <span><span class="footer-dot"></span>Available immediately</span>
+  </div>
+</div>
+
+<!-- ============================================================ PIECE 2 -->
+<div class="page" id="p2">
+  <div class="page-header">
+    <h1>Ali Levent Kilic — not a career change. A direct transfer.</h1>
+    <p>Every critical skill from 20 years in energy infrastructure maps precisely to data center operations. Here's the proof.</p>
+  </div>
+
+  <div class="pw-col-headers">
+    <div class="pw-col-head energy"><div class="ch-label">Energy &amp; pipeline infrastructure</div><div class="ch-sub">What I did — 20 years</div></div>
+    <div></div>
+    <div class="pw-col-head dc"><div class="ch-label">Data center &amp; critical facilities</div><div class="ch-sub">What you need — directly equivalent</div></div>
+  </div>
+
+  <div class="pw-grid">
+    <div class="pw-cat">Operations &amp; uptime</div>
+    <div class="pw-cell energy"><div class="ct">24/7 pipeline &amp; terminal operations</div><div class="cd">Ran continuous high-pressure liquid systems with zero tolerance for unplanned downtime. 900K+ safe man-hours, zero LTI.</div></div>
+    <div class="pw-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="pw-cell dc"><div class="ct">Tier III/IV data center uptime</div><div class="cd">Same discipline — continuous operations, zero tolerance for failure. 99.999% uptime SLAs demand exactly this background.</div></div>
+    <div class="pw-gap"></div>
+    <div class="pw-cell energy"><div class="ct">SCADA/HMI control room management</div><div class="cd">Accelerated alarm response by 50% through control room automation and remote monitoring enhancements.</div></div>
+    <div class="pw-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="pw-cell dc"><div class="ct">DCIM &amp; BMS monitoring</div><div class="cd">Data center infrastructure management runs on identical principles — real-time telemetry, alarm thresholds, remote response.</div></div>
+
+    <div class="pw-cat">Project delivery &amp; commissioning</div>
+    <div class="pw-cell energy"><div class="ct">$50M+ infrastructure portfolio</div><div class="cd">Directed tanks, power/utility systems, standby generation — delivered 12% ahead of schedule with ±10% forecast accuracy.</div></div>
+    <div class="pw-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="pw-cell dc"><div class="ct">Data center capital projects</div><div class="cd">Power, cooling, generator, and utility systems in data centers are the same asset classes — same complexity, same schedule pressure.</div></div>
+    <div class="pw-gap"></div>
+    <div class="pw-cell energy"><div class="ct">Greenfield pipeline commissioning</div><div class="cd">Led commissioning of a new terminal and 40-mile, 150K bbl/day pipeline from concept through stable operation.</div></div>
+    <div class="pw-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="pw-cell dc"><div class="ct">Data center build-out &amp; Cx</div><div class="cd">Greenfield data center commissioning follows the same phased startup model — engineering, systems integration, testing, handover.</div></div>
+
+    <div class="pw-cat">Regulatory &amp; permitting</div>
+    <div class="pw-cell energy"><div class="ct">207 jurisdictions across 14 states</div><div class="cd">Reduced permit-to-construction lead time 20% through digital permitting strategy and real-time Power BI/ArcGIS dashboards.</div></div>
+    <div class="pw-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="pw-cell dc"><div class="ct">Data center site development — NoVA</div><div class="cd">The DC Corridor demands complex multi-jurisdictional permitting across Loudoun, Prince William, and Fairfax counties. Already navigated at scale.</div></div>
+
+    <div class="pw-cat">Safety &amp; compliance</div>
+    <div class="pw-cell energy"><div class="ct">Federal DOT/PHMSA compliance</div><div class="cd">Maintained 100% adherence to federal pipeline safety regulations. Passed Federal Regulatory Audit. DOT 49 CFR Part 195 certified.</div></div>
+    <div class="pw-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="pw-cell dc"><div class="ct">OSHA, NFPA, NEC &amp; EHS compliance</div><div class="cd">Critical facility safety programs and federal compliance audits follow the same rigor. OSHA HAZWOPER 40hr certified. Zero-incident culture built.</div></div>
+
+    <div class="pw-cat">Digital transformation &amp; automation</div>
+    <div class="pw-cell energy"><div class="ct">Industry-first Terminal Automation System</div><div class="cd">Deployed first-of-kind automation driving $5–7M annual revenue growth and real-time throughput visibility for executives.</div></div>
+    <div class="pw-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="pw-cell dc"><div class="ct">DCIM, automation &amp; ops intelligence</div><div class="cd">Same instinct — deploy technology to gain real-time visibility, drive efficiency, and give leadership actionable data. Proven at scale.</div></div>
+    <div class="pw-gap"></div>
+    <div class="pw-cell energy"><div class="ct">GIS, Power BI &amp; AI-assisted reporting</div><div class="cd">Built real-time GIS tracking improving reporting accuracy 75%. Regular user of Claude, ChatGPT, Perplexity for decision support.</div></div>
+    <div class="pw-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="pw-cell dc"><div class="ct">Data-driven ops leadership</div><div class="cd">Hyperscalers and colos run on dashboards, KPIs, and AI-assisted ops. I already lead this way — not learning it.</div></div>
+  </div>
+
+  <div class="pw-verdict">
+    <div class="pw-verdict-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-7" stroke="#0F6E56" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div>
+      <div style="font-size:13px; font-weight:500; color:var(--text); margin-bottom:3px;">The bottom line for hiring managers</div>
+      <div style="font-size:12px; color:var(--text2); line-height:1.6;">Pipeline infrastructure and data centers share the same operational DNA — 24/7 uptime, redundant power systems, rigorous change management, asset integrity, multi-jurisdictional permitting, and zero-failure safety culture. Ali Levent Kilic has spent 20 years mastering exactly these disciplines. The industry context changes. The leadership capability is already proven.</div>
+    </div>
+  </div>
+
+  <div class="footer-strip">
+    <span><span class="footer-dot"></span>Ali Levent Kilic — levent.kilic.contact@gmail.com</span>
+    <span><span class="footer-dot"></span>Leesburg, VA · Director of Operations · VA/MD/DC</span>
+  </div>
+</div>
+
+<!-- ============================================================ PIECE 3 -->
+<div class="page" id="p3">
+  <div class="page-header">
+    <h1>Ali Levent Kilic — 20 years of measurable impact</h1>
+    <p>A career built on delivering results in the most demanding critical infrastructure environments — at every level, in every role.</p>
+  </div>
+
+  <div class="section-label">Career at a glance</div>
+  <div class="tl3-metrics">
+    <div class="metric"><div class="metric-val">20+</div><div class="metric-label">years in critical infrastructure leadership</div></div>
+    <div class="metric"><div class="metric-val">$75M+</div><div class="metric-label">total capital programs managed</div></div>
+    <div class="metric"><div class="metric-val">7</div><div class="metric-label">countries — US, Turkey, Azerbaijan, Kazakhstan, Uzbekistan, Georgia, Armenia</div></div>
+    <div class="metric"><div class="metric-val">0</div><div class="metric-label">lost-time incidents across entire career</div></div>
+  </div>
+
+  <div class="section-label">Progression</div>
+  <div class="tl3-legend">
+    <div class="leg-item"><div class="leg-node" style="background:#1D9E75; border-color:#0F6E56;"></div>Director / GM level</div>
+    <div class="leg-item"><div class="leg-node" style="background:#5DCAA5; border-color:#1D9E75;"></div>Manager / Sr. Consultant level</div>
+    <div class="leg-item"><div class="leg-node" style="background:var(--bg2); border-color:var(--gray-400);"></div>Foundation roles</div>
+  </div>
+
+  <div class="tl3-wrap">
+    <div class="tl3-spine"></div>
+
+    <div class="tl3-entry">
+      <div class="tl3-yr-col"><span class="tl3-yr">2024</span><span class="tl3-range">Aug '24–Oct '25</span></div>
+      <div class="tl3-node-col"><div class="tl3-node mgr"></div><div class="tl3-connector"></div></div>
+      <div class="tl3-content"><span class="lvl-badge mgr">Manager</span><div class="tl3-role">Permitting Manager</div><div class="tl3-company">Colonial Pipeline Co. · Alpharetta, GA</div>
+        <div class="i-pills"><span class="i-pill win">20% faster permitting</span><span class="i-pill scale">207 jurisdictions · 14 states</span><span class="i-pill tech">Power BI · ArcGIS dashboards</span></div>
+        <div class="tl3-desc">Defined organization-wide permitting metrics and built real-time performance dashboards. Drove adoption of new digital tools across a multi-state program — directly analogous to data center development pipeline management.</div>
+      </div>
+    </div>
+
+    <div class="tl3-entry">
+      <div class="tl3-yr-col"><span class="tl3-yr">2023</span><span class="tl3-range">May '23–Aug '24</span></div>
+      <div class="tl3-node-col"><div class="tl3-node mgr"></div><div class="tl3-connector"></div></div>
+      <div class="tl3-content"><span class="lvl-badge mgr">Manager</span><div class="tl3-role">Manager, Field Projects</div><div class="tl3-company">Colonial Pipeline Co. · Woodbine, MD</div>
+        <div class="i-pills"><span class="i-pill win">$50M+ portfolio · 12% ahead of schedule</span><span class="i-pill scale">4 PMs · 8 inspectors</span><span class="i-pill win">15% faster incident response</span></div>
+        <div class="tl3-desc">Directed tanks, power/utility systems, standby generation and distribution projects — the same asset classes found in data centers. Led 24/7 critical environment operations with ±10% forecast accuracy.</div>
+      </div>
+    </div>
+
+    <div class="tl3-entry">
+      <div class="tl3-yr-col"><span class="tl3-yr">2022</span><span class="tl3-range">Aug '22–May '23</span></div>
+      <div class="tl3-node-col"><div class="tl3-node dir"></div><div class="tl3-connector"></div></div>
+      <div class="tl3-content"><span class="lvl-badge dir">Director</span><div class="tl3-role">Director of Operations</div><div class="tl3-company">FTH General Oilfield Services · North Dakota</div>
+        <div class="i-pills"><span class="i-pill tech">75% reporting accuracy via GIS</span><span class="i-pill win">40K ft gas line — on time, on budget</span><span class="i-pill tech">Automated field data collection</span></div>
+        <div class="tl3-desc">Built a digitized field operations model using real-time GIS tracking across dispersed assets. Launched automated data collection that accelerated invoicing by 75% and improved leadership visibility.</div>
+      </div>
+    </div>
+
+    <div class="tl3-entry">
+      <div class="tl3-yr-col"><span class="tl3-yr">2018</span><span class="tl3-range">Jan '18–Aug '22</span></div>
+      <div class="tl3-node-col"><div class="tl3-node dir"></div><div class="tl3-connector"></div></div>
+      <div class="tl3-content"><span class="lvl-badge dir">General Manager</span><div class="tl3-role">General Manager — BOE Pipeline</div><div class="tl3-company">BOE Midstream LLC · Dickinson, ND</div>
+        <div class="i-pills"><span class="i-pill safety">900K+ safe man-hours · zero LTI</span><span class="i-pill win">50% OPEX reduction</span><span class="i-pill win">$100K/yr savings — maintenance program</span><span class="i-pill scale">P&amp;L ownership · multi-site</span></div>
+        <div class="tl3-desc">Full P&amp;L and operations ownership for a mission-critical infrastructure network. Built standardized work instructions, training programs, and competency frameworks from the ground up. Saved $300K by repurposing infrastructure after a lightning-strike event rather than full replacement.</div>
+      </div>
+    </div>
+
+    <div class="tl3-entry">
+      <div class="tl3-yr-col"><span class="tl3-yr">2017</span><span class="tl3-range">May '17–Jan '18</span></div>
+      <div class="tl3-node-col"><div class="tl3-node mgr"></div><div class="tl3-connector"></div></div>
+      <div class="tl3-content"><span class="lvl-badge mgr">Manager</span><div class="tl3-role">Pipeline &amp; Facility Operations Manager</div><div class="tl3-company">BOE Midstream LLC · Dickinson, ND</div>
+        <div class="i-pills"><span class="i-pill win">40% OPEX reduction</span><span class="i-pill win">30% revenue increase</span><span class="i-pill tech">50% faster alarm response</span></div>
+        <div class="tl3-desc">Redesigned operations strategy using data-driven KPIs and real-time monitoring. Automated and enhanced control room monitoring. Reduced overtime 35% through workflow transformation.</div>
+      </div>
+    </div>
+
+    <div class="tl3-entry">
+      <div class="tl3-yr-col"><span class="tl3-yr">2014</span><span class="tl3-range">Apr '14–May '17</span></div>
+      <div class="tl3-node-col"><div class="tl3-node dir"></div><div class="tl3-connector"></div></div>
+      <div class="tl3-content"><span class="lvl-badge dir">Site Leader</span><div class="tl3-role">Critical Facility Site Leader</div><div class="tl3-company">BOE Midstream LLC · Dickinson, ND</div>
+        <div class="i-pills"><span class="i-pill win">$5–7M annual revenue — terminal automation</span><span class="i-pill tech">Industry-first automation deployment</span><span class="i-pill scale">150K bbl/day · 300 railcars/day</span></div>
+        <div class="tl3-desc">Deployed an industry-first Terminal Automation System providing executives real-time throughput visibility — directly analogous to DCIM telemetry. Led greenfield commissioning of a new terminal and 40-mile pipeline from concept to stable operation.</div>
+      </div>
+    </div>
+
+    <div class="tl3-entry">
+      <div class="tl3-yr-col"><span class="tl3-yr">2011</span><span class="tl3-range">Jan '11–Apr '14</span></div>
+      <div class="tl3-node-col"><div class="tl3-node mgr"></div><div class="tl3-connector"></div></div>
+      <div class="tl3-content"><span class="lvl-badge mgr">Sr. Consultant</span><div class="tl3-role">Sr. Consultant / Installation &amp; Commissioning Coordinator</div><div class="tl3-company">Ericsson · Ankara, Turkey</div>
+        <div class="i-pills"><span class="i-pill scale">$17M SDH program · 65 sites · 2 countries</span><span class="i-pill win">25% logistics cost reduction</span><span class="i-pill tech">Live-site cutover — 60hr shutdown</span></div>
+        <div class="tl3-desc">Advised client and Ericsson executives on delivery strategy for a cross-border optical transmission replacement. Established a near-site PMO, cutting logistics costs 25% and documentation time 30%.</div>
+      </div>
+    </div>
+
+    <div class="tl3-entry">
+      <div class="tl3-yr-col"><span class="tl3-yr">2005</span><span class="tl3-range">May '05–Jan '11</span></div>
+      <div class="tl3-node-col"><div class="tl3-node early"></div><div class="tl3-connector"></div></div>
+      <div class="tl3-content"><span class="lvl-badge early">Foundation</span><div class="tl3-role">Site Manager / Regional Division Manager</div><div class="tl3-company">Tyco Fire &amp; Integrated Systems · Baku, Azerbaijan</div>
+        <div class="i-pills"><span class="i-pill scale">Azerbaijan · Kazakhstan · Uzbekistan · Georgia · Armenia</span><span class="i-pill win">100% on-time delivery</span><span class="i-pill win">$1M invoice recovery · 40% revenue growth</span></div>
+        <div class="tl3-desc">Delivered IT/telecom and control infrastructure for offshore oil platforms and pipeline systems across the Caucasus and Central Asia. Consistent 100% on-time delivery across complex, mission-critical engagements in resource-constrained environments.</div>
+      </div>
+    </div>
+
+    <div class="tl3-entry">
+      <div class="tl3-yr-col"><span class="tl3-yr">2003</span><span class="tl3-range">Aug '03–May '05</span></div>
+      <div class="tl3-node-col"><div class="tl3-node early"></div><div class="tl3-connector"></div></div>
+      <div class="tl3-content"><span class="lvl-badge early">Foundation</span><div class="tl3-role">IT &amp; Telecoms Sales Engineer / Project Manager</div><div class="tl3-company">Tyco Fire &amp; Integrated Systems · Baku, Azerbaijan</div>
+        <div class="i-pills"><span class="i-pill win">$1M invoice recovery</span><span class="i-pill win">40% revenue growth</span><span class="i-pill scale">BP · McDermott · BTC installations</span></div>
+        <div class="tl3-desc">Began career delivering critical IT/telecoms infrastructure for major energy clients. Built the commercial and project management foundations that have carried through two decades of leadership.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-strip">
+    <span><span class="footer-dot"></span>Ali Levent Kilic — levent.kilic.contact@gmail.com</span>
+    <span><span class="footer-dot"></span>Leesburg, VA · Director of Operations · VA/MD/DC</span>
+  </div>
+</div>
+
+<!-- ============================================================ PIECE 4 -->
+<div class="page" id="p4">
+  <div class="page-header">
+    <h1>Ali Levent Kilic — competency coverage for Director of Operations</h1>
+    <p>How my skills map against what hyperscalers, colocators, and data center construction firms actually require at the Director level.</p>
+  </div>
+
+  <div class="section-label">Select target role</div>
+  <div class="role-tabs">
+    <div class="role-tab active" id="tab-hyper" onclick="switchRole('hyper')">Hyperscaler ops (AWS · Google · Microsoft)</div>
+    <div class="role-tab" id="tab-colo" onclick="switchRole('colo')">Colocation (Equinix · Digital Realty)</div>
+    <div class="role-tab" id="tab-const" onclick="switchRole('const')">DC construction &amp; commissioning</div>
+  </div>
+
+  <div class="section-label">Coverage summary</div>
+  <div class="cr-summary">
+    <div class="metric"><div class="metric-val" id="sum-full">11</div><div class="metric-label">skills at full or exceeding match</div></div>
+    <div class="metric"><div class="metric-val" id="sum-strong">3</div><div class="metric-label">skills at strong match</div></div>
+    <div class="metric"><div class="metric-val" id="sum-pct">90%</div><div class="metric-label">overall competency coverage</div></div>
+  </div>
+
+  <div class="cr-legend">
+    <div class="leg-item"><div class="leg-node" style="background:#1D9E75; border-color:#0F6E56;"></div>Ali Levent Kilic — demonstrated level</div>
+    <div class="leg-item"><div class="leg-node" style="background:#B5D4F4; border-color:#85B7EB;"></div>Role requirement baseline</div>
+  </div>
+
+  <div class="cr-two-col">
+    <div class="card">
+      <div class="cr-skill-section"><div class="cr-sec-title" id="sec1-title">Operations &amp; reliability</div><div id="sec1-skills"></div></div>
+      <div class="cr-skill-section"><div class="cr-sec-title" id="sec2-title">Project &amp; program delivery</div><div id="sec2-skills"></div></div>
+    </div>
+    <div class="card">
+      <div class="cr-skill-section"><div class="cr-sec-title" id="sec3-title">Safety, compliance &amp; risk</div><div id="sec3-skills"></div></div>
+      <div class="cr-skill-section"><div class="cr-sec-title" id="sec4-title">Technology &amp; digital</div><div id="sec4-skills"></div></div>
+      <div class="cr-skill-section" style="margin-bottom:0;"><div class="cr-sec-title" id="sec5-title">Leadership &amp; business</div><div id="sec5-skills"></div></div>
+    </div>
+  </div>
+
+  <div class="cr-verdict">
+    <div class="cr-verdict-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-7" stroke="#085041" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div><div class="cr-verdict-title" id="verdict-title">Hyperscaler assessment</div><div class="cr-verdict-body" id="verdict-body"></div></div>
+  </div>
+
+  <div class="footer-strip">
+    <span><span class="footer-dot"></span>Ali Levent Kilic — levent.kilic.contact@gmail.com</span>
+    <span><span class="footer-dot"></span>Leesburg, VA · Director of Operations · VA/MD/DC</span>
+  </div>
+</div>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const idx = { p1:0, p2:1, p3:2, p4:3 }[id];
+  document.querySelectorAll('.nav-tab')[idx].classList.add('active');
+  window.scrollTo(0,0);
+}
+
+const roles = {
+  hyper: {
+    sec1: { title: 'Operations & reliability', skills: [
+      { name: '24/7 critical ops & uptime', ali: 97, req: 95, badge: 'full' },
+      { name: 'Incident mgmt & response', ali: 93, req: 90, badge: 'full' },
+      { name: 'DCIM / monitoring systems', ali: 72, req: 85, badge: 'good' },
+    ]},
+    sec2: { title: 'Project & program delivery', skills: [
+      { name: 'Capital project management', ali: 95, req: 90, badge: 'full' },
+      { name: 'Commissioning & startup', ali: 88, req: 85, badge: 'full' },
+      { name: 'Multi-site coordination', ali: 92, req: 88, badge: 'full' },
+    ]},
+    sec3: { title: 'Safety, compliance & risk', skills: [
+      { name: 'EHS & safety culture', ali: 98, req: 95, badge: 'full' },
+      { name: 'Federal & multi-jurisdictional', ali: 92, req: 85, badge: 'full' },
+    ]},
+    sec4: { title: 'Technology & digital', skills: [
+      { name: 'SCADA / HMI / OT systems', ali: 85, req: 80, badge: 'full' },
+      { name: 'Data analytics & dashboards', ali: 85, req: 85, badge: 'strong' },
+      { name: 'AI & automation tools', ali: 78, req: 75, badge: 'full' },
+      { name: 'Hyperscaler-specific tooling', ali: 55, req: 80, badge: 'good' },
+    ]},
+    sec5: { title: 'Leadership & business', skills: [
+      { name: 'P&L & cost ownership', ali: 92, req: 90, badge: 'full' },
+      { name: 'Vendor & contractor mgmt', ali: 94, req: 88, badge: 'full' },
+      { name: 'Executive stakeholder comms', ali: 90, req: 88, badge: 'full' },
+    ]},
+    summary: { full: 11, strong: 3, pct: '90%' },
+    verdict: { title: 'Hyperscaler assessment', body: 'Ali Levent Kilic meets or exceeds requirements in 11 of 15 Director-level competencies for hyperscaler operations roles. The 24/7 uptime discipline, multi-site P&L ownership, and data-driven operations experience map directly. Familiarity with hyperscaler-specific tooling (DCIM platforms, ticketing systems) can be closed within the first 90 days — the operational leadership foundation is already proven at scale.' }
+  },
+  colo: {
+    sec1: { title: 'Operations & reliability', skills: [
+      { name: '24/7 critical ops & uptime', ali: 97, req: 98, badge: 'full' },
+      { name: 'SLA management & reporting', ali: 85, req: 90, badge: 'strong' },
+      { name: 'Incident mgmt & response', ali: 93, req: 92, badge: 'full' },
+    ]},
+    sec2: { title: 'Project & program delivery', skills: [
+      { name: 'Capital project management', ali: 95, req: 88, badge: 'full' },
+      { name: 'Commissioning & startup', ali: 88, req: 90, badge: 'strong' },
+      { name: 'Change management (MOP/SOP)', ali: 83, req: 88, badge: 'good' },
+    ]},
+    sec3: { title: 'Safety, compliance & risk', skills: [
+      { name: 'EHS & safety culture', ali: 98, req: 95, badge: 'full' },
+      { name: 'OSHA / NFPA compliance', ali: 90, req: 88, badge: 'full' },
+    ]},
+    sec4: { title: 'Technology & digital', skills: [
+      { name: 'SCADA / HMI / OT systems', ali: 85, req: 82, badge: 'full' },
+      { name: 'Power & cooling systems', ali: 80, req: 85, badge: 'strong' },
+      { name: 'Data analytics & dashboards', ali: 85, req: 80, badge: 'full' },
+    ]},
+    sec5: { title: 'Leadership & business', skills: [
+      { name: 'P&L & cost ownership', ali: 92, req: 88, badge: 'full' },
+      { name: 'Vendor & contractor mgmt', ali: 94, req: 90, badge: 'full' },
+      { name: 'Customer / tenant relations', ali: 78, req: 85, badge: 'good' },
+      { name: 'Executive stakeholder comms', ali: 90, req: 85, badge: 'full' },
+    ]},
+    summary: { full: 10, strong: 3, pct: '89%' },
+    verdict: { title: 'Colocation assessment', body: 'Ali Levent Kilic is a strong match for Director of Operations at colocation providers. 24/7 uptime discipline, EHS culture, and capital project delivery are at or above the bar. MOP/SOP change management and customer/tenant relations are areas to address early — both are fast to demonstrate given his existing stakeholder communication track record.' }
+  },
+  const: {
+    sec1: { title: 'Construction delivery', skills: [
+      { name: 'Infrastructure project delivery', ali: 96, req: 95, badge: 'full' },
+      { name: 'Greenfield commissioning', ali: 88, req: 90, badge: 'strong' },
+      { name: 'Schedule & cost control', ali: 93, req: 92, badge: 'full' },
+    ]},
+    sec2: { title: 'Field & site operations', skills: [
+      { name: 'Multi-site field management', ali: 94, req: 90, badge: 'full' },
+      { name: 'Contractor & vendor mgmt', ali: 94, req: 95, badge: 'full' },
+      { name: 'Permit-to-construction mgmt', ali: 95, req: 92, badge: 'full' },
+    ]},
+    sec3: { title: 'Safety, compliance & risk', skills: [
+      { name: 'EHS & jobsite safety', ali: 98, req: 98, badge: 'full' },
+      { name: 'Multi-jurisdictional permitting', ali: 95, req: 90, badge: 'full' },
+      { name: 'Federal compliance & audits', ali: 92, req: 88, badge: 'full' },
+    ]},
+    sec4: { title: 'Technology & digital', skills: [
+      { name: 'Data analytics & reporting', ali: 85, req: 78, badge: 'full' },
+      { name: 'GIS & spatial tools', ali: 85, req: 80, badge: 'full' },
+      { name: 'DC-specific M&E systems', ali: 68, req: 82, badge: 'good' },
+    ]},
+    sec5: { title: 'Leadership & business', skills: [
+      { name: 'P&L & budget ownership', ali: 92, req: 90, badge: 'full' },
+      { name: 'Executive stakeholder comms', ali: 90, req: 85, badge: 'full' },
+      { name: 'Team building & training', ali: 93, req: 88, badge: 'full' },
+    ]},
+    summary: { full: 13, strong: 1, pct: '94%' },
+    verdict: { title: 'DC construction assessment', body: 'Ali Levent Kilic is an exceptionally strong match for data center construction and commissioning Director roles — the highest coverage across all three target profiles. Permitting, field project delivery, contractor management, multi-jurisdictional compliance, and schedule/cost control are all at or above requirement. Mechanical & electrical systems knowledge specific to data centers is the one area to develop, which a strong site team can support.' }
+  }
+};
+
+function buildSkills(containerId, skills) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = '';
+  const badgeMap = { full: { text: 'Full match', cls: 'full' }, strong: { text: 'Strong', cls: 'strong' }, good: { text: 'Developing', cls: 'good' } };
+  skills.forEach(s => {
+    const b = badgeMap[s.badge] || badgeMap.good;
+    const isOver = s.ali >= s.req;
+    el.innerHTML += `<div class="cr-skill-row">
+      <span class="cr-skill-name">${s.name}</span>
+      <div class="cr-bar-wrap">
+        <div class="cr-bar-req" style="width:${s.req}%"></div>
+        <div class="cr-bar-fill${isOver ? '' : ' gap'}" style="width:${Math.min(s.ali,100)}%"></div>
+      </div>
+      <span class="match-badge ${b.cls}">${b.text}</span>
+    </div>`;
+  });
+}
+
+function switchRole(key) {
+  document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + key).classList.add('active');
+  const r = roles[key];
+  ['sec1','sec2','sec3','sec4','sec5'].forEach(s => {
+    document.getElementById(s + '-title').textContent = r[s].title;
+    buildSkills(s + '-skills', r[s].skills);
+  });
+  document.getElementById('sum-full').textContent = r.summary.full;
+  document.getElementById('sum-strong').textContent = r.summary.strong;
+  document.getElementById('sum-pct').textContent = r.summary.pct;
+  document.getElementById('verdict-title').textContent = r.verdict.title;
+  document.getElementById('verdict-body').textContent = r.verdict.body;
+}
+
+switchRole('hyper');
+</script>
+</body>
+</html>
