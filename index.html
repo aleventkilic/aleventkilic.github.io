@@ -654,4 +654,20 @@ function buildSkills(containerId, skills) {
 
 function switchRole(key) {
   document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
-  document.getElementByI
+  document.getElementById('tab-' + key).classList.add('active');
+  const r = roles[key];
+  ['sec1','sec2','sec3','sec4','sec5'].forEach(s => {
+    document.getElementById(s + '-title').textContent = r[s].title;
+    buildSkills(s + '-skills', r[s].skills);
+  });
+  document.getElementById('sum-full').textContent = r.summary.full;
+  document.getElementById('sum-strong').textContent = r.summary.strong;
+  document.getElementById('sum-pct').textContent = r.summary.pct;
+  document.getElementById('verdict-title').textContent = r.verdict.title;
+  document.getElementById('verdict-body').textContent = r.verdict.body;
+}
+
+switchRole('hyper');
+</script>
+</body>
+</html>
