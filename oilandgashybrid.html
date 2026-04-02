@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ali Levent Kilic | Visual Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f2ee;
+    --bg2: #ede9e3;
+    --bg-dark: #1a1f2e;
+    --bg-dark2: #141929;
+    --ink: #1a1f2e;
+    --ink2: #3d4558;
+    --ink3: #6b7280;
+    --accent1: #c8440f;  /* deep burnt orange */
+    --accent2: #1d5fa6;  /* steel blue */
+    --accent3: #0f7d6c;  /* pipeline green */
+    --accent4: #8b5e00;  /* amber/gold */
+    --accent5: #6b2fa0;  /* purple */
+    --white: #ffffff;
+    --card-border: rgba(26,31,46,0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── MASTHEAD ─────────────────────────────────────────── */
+  .masthead {
+    background: var(--bg-dark);
+    padding: 0;
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    min-height: 220px;
+    overflow: hidden;
+  }
+
+  .masthead-left {
+    background: var(--accent1);
+    padding: 36px 36px 36px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .masthead-left::after {
+    content: '';
+    position: absolute;
+    right: -40px; top: 0; bottom: 0;
+    width: 80px;
+    background: var(--bg-dark);
+    clip-path: polygon(40px 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .masthead-left .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 12px;
+  }
+  .masthead-left h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+  }
+  .masthead-left .headline {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.75);
+    margin-top: 10px;
+    line-height: 1.6;
+    max-width: 260px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .masthead-right {
+    padding: 32px 48px 32px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-content: center;
+  }
+
+  .stat-block { }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 44px;
+    font-weight: 800;
+    color: var(--accent1);
+    line-height: 1;
+  }
+  .stat-num.b { color: var(--accent2); }
+  .stat-num.g { color: var(--accent3); }
+  .stat-num.a { color: #f5a623; }
+  .stat-label {
+    font-size: 11px;
+    color: rgba(245,242,238,0.55);
+    margin-top: 4px;
+    line-height: 1.4;
+    font-weight: 300;
+  }
+
+  .contact-strip {
+    grid-column: span 2;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .c-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(245,242,238,0.5);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .c-dot { width: 4px; height: 4px; background: var(--accent1); border-radius: 50%; }
+  .open-tag {
+    margin-left: auto;
+    background: rgba(200,68,15,0.2);
+    border: 1px solid rgba(200,68,15,0.5);
+    color: var(--accent1);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 3px 10px;
+    border-radius: 1px;
+  }
+
+  /* ── CONTENT GRID ────────────────────────────────────── */
+  .content {
+    padding: 32px 44px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 16px; height: 2px;
+    background: currentColor;
+  }
+  .section-label.orange { color: var(--accent1); }
+  .section-label.blue { color: var(--accent2); }
+  .section-label.green { color: var(--accent3); }
+
+  /* ── CARD BASE ───────────────────────────────────────── */
+  .block {
+    background: var(--white);
+    border-radius: 6px;
+    padding: 24px;
+    border: 1px solid var(--card-border);
+    position: relative;
+    animation: riseIn 0.5s ease both;
+  }
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .block.dark {
+    background: var(--bg-dark);
+    border-color: transparent;
+    color: #e2e8f0;
+  }
+  .block.tinted { background: var(--bg2); border-color: transparent; }
+  .block.full { grid-column: span 3; }
+  .block.two { grid-column: span 2; }
+
+  /* ── TIMELINE STRIP ──────────────────────────────────── */
+  .tl-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin-top: 8px;
+    position: relative;
+  }
+  .tl-strip::before {
+    content: '';
+    position: absolute;
+    top: 22px; left: 20px; right: 20px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
+    z-index: 0;
+  }
+  .tl-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    padding: 0 4px;
+  }
+  .tl-circle {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+  }
+  .tl-circle.c1 { background: rgba(200,68,15,0.12); border: 2px solid var(--accent1); }
+  .tl-circle.c2 { background: rgba(29,95,166,0.12); border: 2px solid var(--accent2); }
+  .tl-circle.c3 { background: rgba(15,125,108,0.12); border: 2px solid var(--accent3); }
+  .tl-circle.c4 { background: rgba(139,94,0,0.12); border: 2px solid var(--accent4); }
+  .tl-circle.c5 { background: rgba(107,47,160,0.12); border: 2px solid var(--accent5); }
+  .tl-company-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .tl-node-role {
+    font-size: 10px;
+    color: var(--ink3);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .tl-node-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--ink3);
+    opacity: 0.6;
+  }
+  .tl-node-win {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--accent1);
+    margin-top: 4px;
+  }
+  .tl-node-win.b { color: var(--accent2); }
+  .tl-node-win.g { color: var(--accent3); }
+  .tl-node-win.a { color: var(--accent4); }
+  .tl-node-win.p { color: var(--accent5); }
+
+  /* ── RADAR CHART ─────────────────────────────────────── */
+  .radar-wrap { display: flex; justify-content: center; align-items: center; padding: 8px 0; }
+
+  /* ── IMPACT NUMBERS GRID ─────────────────────────────── */
+  .impact-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .ig-item {
+    background: var(--bg);
+    border-radius: 4px;
+    padding: 14px;
+    border-left: 3px solid var(--accent1);
+  }
+  .ig-item.b { border-color: var(--accent2); }
+  .ig-item.g { border-color: var(--accent3); }
+  .ig-item.a { border-color: var(--accent4); }
+  .ig-item.p { border-color: var(--accent5); }
+  .ig-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--accent1);
+    line-height: 1;
+  }
+  .ig-num.b { color: var(--accent2); }
+  .ig-num.g { color: var(--accent3); }
+  .ig-num.a { color: var(--accent4); }
+  .ig-num.p { color: var(--accent5); }
+  .ig-desc {
+    font-size: 11px;
+    color: var(--ink3);
+    line-height: 1.4;
+    margin-top: 4px;
+  }
+  .ig-desc strong { display: block; color: var(--ink); font-size: 12px; margin-bottom: 1px; }
+
+  /* ── SECTOR PILLS ────────────────────────────────────── */
+  .sector-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .pill {
+    background: var(--bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink2);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .pill:hover { background: var(--accent1); color: #fff; border-color: var(--accent1); }
+  .pill .pill-icon { font-size: 14px; }
+
+  /* ── COMPETENCY BARS ─────────────────────────────────── */
+  .comp-bar-list { margin-top: 8px; }
+  .cb-row { margin-bottom: 14px; }
+  .cb-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+  .cb-name { font-size: 12px; font-weight: 500; color: var(--ink); }
+  .cb-val { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--ink3); }
+  .cb-track {
+    height: 6px;
+    background: var(--bg2);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .cb-fill {
+    height: 100%;
+    border-radius: 3px;
+    width: 0;
+    transition: width 1.5s cubic-bezier(0.4,0,0.2,1);
+  }
+  .cb-fill.o { background: linear-gradient(90deg, var(--accent1), #e86a2e); }
+  .cb-fill.b { background: linear-gradient(90deg, var(--accent2), #4d87ce); }
+  .cb-fill.g { background: linear-gradient(90deg, var(--accent3), #1aaa96); }
+  .cb-fill.a { background: linear-gradient(90deg, var(--accent4), #c28a15); }
+  .cb-fill.p { background: linear-gradient(90deg, var(--accent5), #9b59d1); }
+
+  /* ── GEOGRAPHY BLOCK ─────────────────────────────────── */
+  .geo-items { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+  .geo-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .geo-flag { font-size: 18px; }
+  .geo-text { font-size: 12px; color: rgba(226,232,240,0.8); font-weight: 400; }
+  .geo-badge {
+    margin-left: auto;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--accent1);
+    background: rgba(200,68,15,0.15);
+    padding: 2px 8px;
+    border-radius: 2px;
+    border: 1px solid rgba(200,68,15,0.3);
+  }
+  .geo-badge.g {
+    color: #2dd4bf;
+    background: rgba(45,212,191,0.1);
+    border-color: rgba(45,212,191,0.25);
+  }
+
+  /* ── TOOLS ───────────────────────────────────────────── */
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .tool-item {
+    background: var(--bg);
+    border-radius: 4px;
+    padding: 10px 10px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink2);
+    border: 1px solid var(--card-border);
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .tool-item:hover { background: var(--bg-dark); color: #e2e8f0; border-color: transparent; }
+  .tool-item .t-icon { font-size: 16px; display: block; margin-bottom: 4px; }
+
+  /* ── SUMMARY QUOTE ───────────────────────────────────── */
+  .summary-quote {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.5;
+    position: relative;
+    padding-left: 20px;
+    border-left: 3px solid var(--accent1);
+    margin-top: 8px;
+  }
+  .summary-sub {
+    font-size: 12px;
+    color: rgba(226,232,240,0.55);
+    font-weight: 300;
+    margin-top: 12px;
+    line-height: 1.7;
+    max-width: 680px;
+  }
+
+  /* ── CERTS ───────────────────────────────────────────── */
+  .cert-dots { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+  .cert-dot-item { display: flex; gap: 10px; align-items: flex-start; }
+  .cert-dot-mark {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent4);
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+  .cert-dot-text { font-size: 12px; color: var(--ink2); line-height: 1.5; }
+  .cert-dot-text strong { color: var(--ink); font-weight: 600; }
+
+  /* ── FOOTER ──────────────────────────────────────────── */
+  .page-footer {
+    background: var(--bg-dark2);
+    padding: 14px 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pf-left {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 2px;
+  }
+  .pf-right {
+    display: flex;
+    gap: 20px;
+  }
+  .pf-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--accent1);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .pf-link:hover { opacity: 1; }
+
+  /* ── STAGGER ANIMATIONS ──────────────────────────────── */
+  .block:nth-child(1) { animation-delay: 0.0s; }
+  .block:nth-child(2) { animation-delay: 0.08s; }
+  .block:nth-child(3) { animation-delay: 0.14s; }
+  .block:nth-child(4) { animation-delay: 0.2s; }
+  .block:nth-child(5) { animation-delay: 0.26s; }
+  .block:nth-child(6) { animation-delay: 0.32s; }
+  .block:nth-child(7) { animation-delay: 0.38s; }
+  .block:nth-child(8) { animation-delay: 0.44s; }
+
+  @media (max-width: 1100px) {
+    .masthead { grid-template-columns: 1fr; }
+    .content { grid-template-columns: 1fr 1fr; padding: 20px; }
+    .block.full { grid-column: span 2; }
+    .tl-strip { grid-template-columns: repeat(3, 1fr); }
+    .tl-strip .tl-node:nth-child(4), .tl-strip .tl-node:nth-child(5) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-left">
+    <div class="eyebrow">// Oil &amp; Gas · Energy Infrastructure · 2026</div>
+    <h1>Ali Levent<br>Kilic</h1>
+    <div class="headline">Operations &amp; Project Management Leader<br>Upstream · Midstream · Downstream · 20+ Years</div>
+  </div>
+  <div class="masthead-right">
+    <div class="stat-block">
+      <div class="stat-num" id="c1">0</div>
+      <div class="stat-label">Years delivering complex<br>oil &amp; gas programs globally</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num b" id="c2">$0M+</div>
+      <div class="stat-label">Pipeline &amp; asset integrity<br>portfolio managed</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num g" id="c3">0K+</div>
+      <div class="stat-label">Consecutive safe<br>man-hours · Zero LTI</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num a" id="c4">0%</div>
+      <div class="stat-label">Operating cost reduction<br>while strengthening safety</div>
+    </div>
+    <div class="contact-strip">
+      <div class="c-item"><span class="c-dot"></span>levent.kilic.contact@gmail.com</div>
+      <div class="c-item"><span class="c-dot"></span>701 300 1333</div>
+      <div class="c-item"><span class="c-dot"></span>linkedin.com/in/aleventkilic</div>
+      <div class="c-item"><span class="c-dot"></span>Leesburg, VA</div>
+      <div class="open-tag">● OPEN TO ROLES</div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTENT GRID -->
+<div class="content">
+
+  <!-- Career Timeline — Full Width -->
+  <div class="block full" style="animation-delay:0.0s">
+    <div class="section-label orange">Career Trajectory — 20 Years of Escalating Scope</div>
+    <div class="tl-strip">
+      <div class="tl-node">
+        <div class="tl-circle c5">🏗</div>
+        <div class="tl-company-name">Tyco / Ericsson</div>
+        <div class="tl-node-role">Infrastructure Lead<br>Baku · Ankara</div>
+        <div class="tl-node-date">2003 – 2014</div>
+        <div class="tl-node-win p">BP · Offshore · BTC</div>
+      </div>
+      <div class="tl-node">
+        <div class="tl-circle c4">🏭</div>
+        <div class="tl-company-name">BOE Midstream</div>
+        <div class="tl-node-role">Terminal &amp; Ops Mgr<br>Dickinson, ND</div>
+        <div class="tl-node-date">2014 – 2018</div>
+        <div class="tl-node-win a">$5–7M Revenue Created</div>
+      </div>
+      <div class="tl-node">
+        <div class="tl-circle c3">⚙️</div>
+        <div class="tl-company-name">BOE Midstream</div>
+        <div class="tl-node-role">General Manager<br>Dickinson, ND</div>
+        <div class="tl-node-date">2018 – 2022</div>
+        <div class="tl-node-win g">900K Safe Man-Hrs</div>
+      </div>
+      <div class="tl-node">
+        <div class="tl-circle c2">🔩</div>
+        <div class="tl-company-name">Colonial Pipeline</div>
+        <div class="tl-node-role">Field Projects Mgr<br>Woodbine, MD</div>
+        <div class="tl-node-date">2023 – 2024</div>
+        <div class="tl-node-win b">$50M+ · 12% Ahead</div>
+      </div>
+      <div class="tl-node">
+        <div class="tl-circle c1">🗺</div>
+        <div class="tl-company-name">Colonial Pipeline</div>
+        <div class="tl-node-role">Permitting Manager<br>Alpharetta, GA</div>
+        <div class="tl-node-date">2024 – 2025</div>
+        <div class="tl-node-win">207 Jurisdictions · 14 States</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Impact Metrics -->
+  <div class="block two" style="animation-delay:0.08s">
+    <div class="section-label orange">Signature Impact Numbers</div>
+    <div class="impact-grid-2">
+      <div class="ig-item">
+        <div class="ig-num">−50%</div>
+        <div class="ig-desc"><strong>OPEX Reduction</strong>Standardized work, insourced maintenance, training programs</div>
+      </div>
+      <div class="ig-item b">
+        <div class="ig-num b">−20%</div>
+        <div class="ig-desc"><strong>Permit Lead Time</strong>Digital strategy across 207 jurisdictions in 14 states</div>
+      </div>
+      <div class="ig-item g">
+        <div class="ig-num g">+25%</div>
+        <div class="ig-desc"><strong>Workforce Productivity</strong>High-reliability culture · Zero lost-time incidents</div>
+      </div>
+      <div class="ig-item a">
+        <div class="ig-num a">$300K</div>
+        <div class="ig-desc"><strong>Capex Avoided</strong>Root cause fix for 5 crude tank radar systems post-lightning strike</div>
+      </div>
+      <div class="ig-item p">
+        <div class="ig-num p">+50%</div>
+        <div class="ig-desc"><strong>Alarm Response</strong>Control room automation and remote monitoring</div>
+      </div>
+      <div class="ig-item">
+        <div class="ig-num">12%</div>
+        <div class="ig-desc"><strong>Ahead of Schedule</strong>$50M portfolio · ±10% forecast accuracy</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Radar Chart -->
+  <div class="block" style="animation-delay:0.12s">
+    <div class="section-label blue">Competency Radar</div>
+    <div class="radar-wrap">
+      <svg id="radar" viewBox="0 0 260 260" width="220" height="220">
+        <defs>
+          <linearGradient id="radarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#c8440f;stop-opacity:0.7"/>
+            <stop offset="100%" style="stop-color:#1d5fa6;stop-opacity:0.5"/>
+          </linearGradient>
+        </defs>
+        <!-- Grid circles -->
+        <circle cx="130" cy="130" r="100" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+        <circle cx="130" cy="130" r="75" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+        <circle cx="130" cy="130" r="50" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+        <circle cx="130" cy="130" r="25" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+        <!-- Axes (7 axes) -->
+        <!-- Program Mgmt: top -->
+        <line x1="130" y1="130" x2="130" y2="30" stroke="#d1d5db" stroke-width="1"/>
+        <!-- Operations: top-right -->
+        <line x1="130" y1="130" x2="217" y2="78" stroke="#d1d5db" stroke-width="1"/>
+        <!-- Safety: right -->
+        <line x1="130" y1="130" x2="230" y2="130" stroke="#d1d5db" stroke-width="1"/>
+        <!-- Regulatory: bottom-right -->
+        <line x1="130" y1="130" x2="195" y2="205" stroke="#d1d5db" stroke-width="1"/>
+        <!-- Digital: bottom-left -->
+        <line x1="130" y1="130" x2="65" y2="205" stroke="#d1d5db" stroke-width="1"/>
+        <!-- Cost Mgmt: left -->
+        <line x1="130" y1="130" x2="30" y2="130" stroke="#d1d5db" stroke-width="1"/>
+        <!-- Leadership: top-left -->
+        <line x1="130" y1="130" x2="43" y2="78" stroke="#d1d5db" stroke-width="1"/>
+
+        <!-- Data polygon: all near max -->
+        <!-- 98% Program Mgmt, 97% Operations, 98% Safety, 95% Regulatory, 90% Digital, 95% Cost, 96% Leadership -->
+        <polygon id="radarPoly" points="130,130 130,130 130,130 130,130 130,130 130,130 130,130"
+          fill="url(#radarGrad)" stroke="#c8440f" stroke-width="2" opacity="0.85"/>
+
+        <!-- Labels -->
+        <text x="130" y="22" text-anchor="middle" font-family="Syne" font-size="9" font-weight="700" fill="#1a1f2e">PROGRAM MGMT</text>
+        <text x="224" y="75" text-anchor="start" font-family="Syne" font-size="9" font-weight="700" fill="#1a1f2e">OPERATIONS</text>
+        <text x="236" y="133" text-anchor="start" font-family="Syne" font-size="9" font-weight="700" fill="#1a1f2e">SAFETY</text>
+        <text x="200" y="218" text-anchor="middle" font-family="Syne" font-size="9" font-weight="700" fill="#1a1f2e">REGULATORY</text>
+        <text x="62" y="218" text-anchor="middle" font-family="Syne" font-size="9" font-weight="700" fill="#1a1f2e">DIGITAL</text>
+        <text x="14" y="133" text-anchor="start" font-family="Syne" font-size="9" font-weight="700" fill="#1a1f2e">COST OPT</text>
+        <text x="38" y="73" text-anchor="middle" font-family="Syne" font-size="9" font-weight="700" fill="#1a1f2e">LEADERSHIP</text>
+
+        <!-- Dots on polygon -->
+        <circle id="d0" cx="130" cy="130" r="4" fill="#c8440f"/>
+        <circle id="d1" cx="130" cy="130" r="4" fill="#c8440f"/>
+        <circle id="d2" cx="130" cy="130" r="4" fill="#1d5fa6"/>
+        <circle id="d3" cx="130" cy="130" r="4" fill="#0f7d6c"/>
+        <circle id="d4" cx="130" cy="130" r="4" fill="#8b5e00"/>
+        <circle id="d5" cx="130" cy="130" r="4" fill="#6b2fa0"/>
+        <circle id="d6" cx="130" cy="130" r="4" fill="#c8440f"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Sectors -->
+  <div class="block" style="animation-delay:0.2s">
+    <div class="section-label green">Operational Domains</div>
+    <div class="sector-pills">
+      <div class="pill"><span class="pill-icon">🛢</span> Midstream Pipelines</div>
+      <div class="pill"><span class="pill-icon">⚓</span> Offshore Platforms</div>
+      <div class="pill"><span class="pill-icon">🏭</span> Terminals &amp; Tanks</div>
+      <div class="pill"><span class="pill-icon">🔧</span> Brownfield Upgrades</div>
+      <div class="pill"><span class="pill-icon">🌱</span> Greenfield Projects</div>
+      <div class="pill"><span class="pill-icon">📡</span> IT/OT &amp; SCADA</div>
+      <div class="pill"><span class="pill-icon">📋</span> PHMSA / DOT</div>
+      <div class="pill"><span class="pill-icon">🗺</span> Permitting Strategy</div>
+    </div>
+  </div>
+
+  <!-- Competency Bars -->
+  <div class="block" style="animation-delay:0.26s">
+    <div class="section-label">Core Competencies</div>
+    <div class="comp-bar-list" id="compBars">
+      <div class="cb-row">
+        <div class="cb-top"><span class="cb-name">Project &amp; Portfolio Management</span><span class="cb-val">98%</span></div>
+        <div class="cb-track"><div class="cb-fill o" data-w="98"></div></div>
+      </div>
+      <div class="cb-row">
+        <div class="cb-top"><span class="cb-name">Pipeline &amp; Terminal Operations</span><span class="cb-val">97%</span></div>
+        <div class="cb-track"><div class="cb-fill b" data-w="97"></div></div>
+      </div>
+      <div class="cb-row">
+        <div class="cb-top"><span class="cb-name">PHMSA / DOT / EPA Compliance</span><span class="cb-val">95%</span></div>
+        <div class="cb-track"><div class="cb-fill g" data-w="95"></div></div>
+      </div>
+      <div class="cb-row">
+        <div class="cb-top"><span class="cb-name">Safety &amp; Asset Integrity</span><span class="cb-val">98%</span></div>
+        <div class="cb-track"><div class="cb-fill o" data-w="98"></div></div>
+      </div>
+      <div class="cb-row">
+        <div class="cb-top"><span class="cb-name">Digital Transformation / GIS / BI</span><span class="cb-val">90%</span></div>
+        <div class="cb-track"><div class="cb-fill p" data-w="90"></div></div>
+      </div>
+      <div class="cb-row">
+        <div class="cb-top"><span class="cb-name">Cost Optimization &amp; OPEX</span><span class="cb-val">95%</span></div>
+        <div class="cb-track"><div class="cb-fill a" data-w="95"></div></div>
+      </div>
+      <div class="cb-row">
+        <div class="cb-top"><span class="cb-name">Subcontractor &amp; Field Management</span><span class="cb-val">96%</span></div>
+        <div class="cb-track"><div class="cb-fill b" data-w="96"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tools -->
+  <div class="block" style="animation-delay:0.3s">
+    <div class="section-label">Tools &amp; Platforms</div>
+    <div class="tool-grid">
+      <div class="tool-item"><span class="t-icon">📊</span>Power BI</div>
+      <div class="tool-item"><span class="t-icon">🗺</span>ArcGIS</div>
+      <div class="tool-item"><span class="t-icon">⚙️</span>SCADA/HMI</div>
+      <div class="tool-item"><span class="t-icon">📡</span>LiDAR/GIS</div>
+      <div class="tool-item"><span class="t-icon">📋</span>Smartsheet</div>
+      <div class="tool-item"><span class="t-icon">📐</span>Planisware</div>
+      <div class="tool-item"><span class="t-icon">📏</span>CAD</div>
+      <div class="tool-item"><span class="t-icon">📈</span>Excel</div>
+      <div class="tool-item"><span class="t-icon">🔗</span>SharePoint</div>
+    </div>
+  </div>
+
+  <!-- Geography / Availability (dark card) -->
+  <div class="block dark" style="animation-delay:0.34s">
+    <div class="section-label" style="color:rgba(255,255,255,0.35)">Location &amp; Availability</div>
+    <div class="geo-items">
+      <div class="geo-item">
+        <span class="geo-flag">📍</span>
+        <span class="geo-text">Virginia / Maryland / DC Metro</span>
+        <span class="geo-badge">PRIMARY</span>
+      </div>
+      <div class="geo-item">
+        <span class="geo-flag">🏠</span>
+        <span class="geo-text">Remote · Hybrid with Travel</span>
+        <span class="geo-badge g">OPEN</span>
+      </div>
+      <div class="geo-item">
+        <span class="geo-flag">✈️</span>
+        <span class="geo-text">Rotational US &amp; International</span>
+        <span class="geo-badge g">OPEN</span>
+      </div>
+      <div class="geo-item">
+        <span class="geo-flag">🇺🇸</span>
+        <span class="geo-text">US Citizen · No Restrictions</span>
+        <span class="geo-badge">CONFIRMED</span>
+      </div>
+    </div>
+    <div style="margin-top:14px">
+      <div class="section-label" style="color:rgba(255,255,255,0.35);margin-bottom:8px">Languages</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span style="background:rgba(200,68,15,0.2);border:1px solid rgba(200,68,15,0.35);color:#e86a2e;font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:2px">English – Fluent</span>
+        <span style="background:rgba(200,68,15,0.2);border:1px solid rgba(200,68,15,0.35);color:#e86a2e;font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:2px">Turkish – Native</span>
+        <span style="background:rgba(200,68,15,0.2);border:1px solid rgba(200,68,15,0.35);color:#e86a2e;font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:2px">Azerbaijani – Fluent</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Certifications -->
+  <div class="block tinted" style="animation-delay:0.36s">
+    <div class="section-label">Certifications &amp; Education</div>
+    <div class="cert-dots">
+      <div class="cert-dot-item">
+        <div class="cert-dot-mark"></div>
+        <div class="cert-dot-text"><strong>US DOT Pipeline Safety Compliance – Liquid</strong>Oklahoma, USA</div>
+      </div>
+      <div class="cert-dot-item">
+        <div class="cert-dot-mark"></div>
+        <div class="cert-dot-text"><strong>City &amp; Guilds Level 2 – Fiber Optic Cabling</strong>North Yorkshire, UK</div>
+      </div>
+      <div class="cert-dot-item">
+        <div class="cert-dot-mark"></div>
+        <div class="cert-dot-text"><strong>Emerson Micro Motion LACT &amp; Coriolis</strong>Austin, TX</div>
+      </div>
+      <div class="cert-dot-item">
+        <div class="cert-dot-mark" style="background:var(--accent2)"></div>
+        <div class="cert-dot-text"><strong>BA Journalism &amp; Public Relations</strong>Aegean University, Izmir, Turkey</div>
+      </div>
+      <div class="cert-dot-item">
+        <div class="cert-dot-mark" style="background:var(--accent3)"></div>
+        <div class="cert-dot-text"><strong>1st Lt, Civil Air Patrol</strong>GIS Damage Assessment · Airborne Photographer · Mission Observer</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary — Dark Full-Width -->
+  <div class="block dark full" style="animation-delay:0.4s">
+    <div class="summary-quote">
+      "I turn operational complexity into measurable performance — from deep-sea platforms to nationally significant pipeline infrastructure. Safety, cost, and schedule outcomes become predictable, not aspirational."
+    </div>
+    <div class="summary-sub">
+      Strategic leader with 20+ years delivering brownfield and greenfield programs across upstream, midstream, and downstream energy. Known for building high-performing teams, implementing digital transformation, and maintaining zero-incident cultures while driving 50%+ cost reductions. Trusted by executives and regulators alike for clear-headed decision-making under pressure.
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="page-footer">
+  <div class="pf-left">ALI LEVENT KILIC · OIL &amp; GAS PROFILE · VISUAL RESUME · 2026</div>
+  <div class="pf-right">
+    <a href="mailto:levent.kilic.contact@gmail.com" class="pf-link">levent.kilic.contact@gmail.com</a>
+    <a href="https://linkedin.com/in/aleventkilic" class="pf-link" target="_blank">linkedin.com/in/aleventkilic</a>
+    <span class="pf-link">701 300 1333</span>
+  </div>
+</footer>
+
+<script>
+  // ── Counter Animation ─────────────────────────────────
+  function countTo(el, target, suffix, duration) {
+    const start = performance.now();
+    function frame(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = (typeof target === 'number' ? Math.round(target * ease) : '') + suffix;
+      if (p < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // ── Radar Animation ───────────────────────────────────
+  function animateRadar() {
+    const cx = 130, cy = 130, r = 100;
+    // 7 axes angles (starting from top, clockwise)
+    // top=270°, top-right=270+360/7°, etc.
+    const n = 7;
+    const vals = [0.98, 0.97, 0.98, 0.95, 0.90, 0.95, 0.96]; // program, ops, safety, reg, digital, cost, leadership
+    const angles = Array.from({length: n}, (_, i) => (i * 360/n - 90) * Math.PI / 180);
+
+    const start = performance.now();
+    const duration = 1600;
+
+    function frame(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      const pts = angles.map((a, i) => {
+        const dist = vals[i] * r * ease;
+        return `${cx + dist * Math.cos(a)},${cy + dist * Math.sin(a)}`;
+      });
+      document.getElementById('radarPoly').setAttribute('points', pts.join(' '));
+      angles.forEach((a, i) => {
+        const dist = vals[i] * r * ease;
+        const dot = document.getElementById(`d${i}`);
+        if (dot) {
+          dot.setAttribute('cx', cx + dist * Math.cos(a));
+          dot.setAttribute('cy', cy + dist * Math.sin(a));
+        }
+      });
+      if (p < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // ── Skill bars ────────────────────────────────────────
+  function animateBars() {
+    document.querySelectorAll('.cb-fill').forEach(b => {
+      b.style.width = b.dataset.w + '%';
+    });
+  }
+
+  // ── Trigger on scroll ─────────────────────────────────
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        countTo(document.getElementById('c1'), 20, '+', 1400);
+        countTo(document.getElementById('c3'), 900, 'K+', 1400);
+        countTo(document.getElementById('c4'), 50, '%', 1400);
+        // c2 special
+        let p = 0, dur = 1400, s = performance.now();
+        (function f(now) {
+          p = Math.min((now - s) / dur, 1);
+          const v = Math.round(50 * (1 - Math.pow(1 - p, 3)));
+          document.getElementById('c2').textContent = '$' + v + 'M+';
+          if (p < 1) requestAnimationFrame(f);
+        })(s);
+        animateRadar();
+        animateBars();
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  observer.observe(document.querySelector('.masthead'));
+</script>
+
+</body>
+</html>
