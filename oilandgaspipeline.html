@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ali Levent Kilic | Pipeline Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1c1c1e;
+    --bg2: #242428;
+    --bg3: #2c2c30;
+    --steel: #4a5568;
+    --steel-light: #718096;
+    --pipe-color: #5a6478;
+    --pipe-highlight: #8899b0;
+    --pipe-shadow: #2d3444;
+    --flow: #f59e0b;
+    --flow2: #ef4444;
+    --flow3: #10b981;
+    --flow4: #3b82f6;
+    --flow5: #8b5cf6;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --text3: #64748b;
+    --rust: #c2410c;
+    --rust-light: #f97316;
+    --gauge-bg: #1a1a1d;
+    --weld: rgba(255,255,255,0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Sans 3', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── TOP NAMEPLATE ────────────────────────────────────── */
+  .nameplate {
+    background: linear-gradient(180deg, #111113, #1c1c1e);
+    border-bottom: 3px solid var(--rust);
+    padding: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    overflow: hidden;
+  }
+  .nameplate::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.01) 0px,
+      rgba(255,255,255,0.01) 1px,
+      transparent 1px,
+      transparent 12px
+    );
+    pointer-events: none;
+  }
+  .np-left .tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--rust-light);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    opacity: 0.8;
+  }
+  .np-left h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+  .np-left h1 em {
+    font-style: normal;
+    color: var(--rust-light);
+  }
+  .np-left .subtitle {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    color: var(--text2);
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+  .np-right {
+    text-align: right;
+  }
+  .spec-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+  .spec-row {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .spec-row .val { color: var(--text2); }
+  .spec-row .bar {
+    width: 3px; height: 3px;
+    background: var(--rust);
+    border-radius: 50%;
+  }
+  .open-status {
+    margin-top: 12px;
+    border: 1px solid var(--rust);
+    padding: 5px 14px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--rust-light);
+    animation: flicker 3s ease-in-out infinite;
+  }
+  @keyframes flicker {
+    0%, 90%, 100% { opacity: 1; }
+    95% { opacity: 0.6; }
+  }
+
+  /* ── PRESSURE GAUGES ROW ─────────────────────────────── */
+  .gauges-row {
+    background: var(--bg2);
+    border-bottom: 2px solid rgba(255,255,255,0.06);
+    padding: 24px 48px;
+    display: flex;
+    gap: 0;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .gauge-divider {
+    width: 1px;
+    height: 60px;
+    background: rgba(255,255,255,0.06);
+  }
+  .gauge {
+    text-align: center;
+    padding: 0 24px;
+    cursor: default;
+    transition: transform 0.2s;
+  }
+  .gauge:hover { transform: scale(1.05); }
+  .gauge-val {
+    font-family: 'Oswald', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .gauge-val.amber { color: var(--flow); }
+  .gauge-val.red { color: var(--flow2); }
+  .gauge-val.green { color: var(--flow3); }
+  .gauge-val.blue { color: var(--flow4); }
+  .gauge-val.purple { color: var(--flow5); }
+  .gauge-val.orange { color: var(--rust-light); }
+  .gauge-unit {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text2);
+    margin-left: 2px;
+  }
+  .gauge-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--text3);
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+  .gauge-desc {
+    font-size: 10px;
+    color: var(--text3);
+    margin-top: 2px;
+    font-weight: 300;
+  }
+
+  /* ── PIPELINE SECTION ────────────────────────────────── */
+  .pipeline-section {
+    padding: 40px 48px;
+  }
+  .pipeline-header {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--rust-light);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .pipeline-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+  }
+
+  /* THE PIPE itself */
+  .pipe-container {
+    position: relative;
+    margin-bottom: 0;
+  }
+
+  /* Horizontal pipe run */
+  .pipe-run {
+    position: relative;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+  }
+  .pipe-body {
+    width: 100%;
+    height: 36px;
+    background: linear-gradient(
+      180deg,
+      var(--pipe-highlight) 0%,
+      var(--pipe-color) 20%,
+      var(--pipe-shadow) 60%,
+      #222 100%
+    );
+    border-radius: 4px;
+    position: relative;
+    box-shadow:
+      0 2px 6px rgba(0,0,0,0.5),
+      0 -1px 0 rgba(255,255,255,0.08) inset,
+      0 1px 0 rgba(0,0,0,0.5) inset;
+  }
+  /* Weld rings */
+  .pipe-body::before, .pipe-body::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 8px;
+    background: linear-gradient(180deg, #666, #444, #333);
+    border: 1px solid rgba(0,0,0,0.4);
+  }
+  .pipe-body::before { left: 24px; border-radius: 2px; }
+  .pipe-body::after { right: 24px; border-radius: 2px; }
+
+  /* Flow animation inside pipe */
+  .pipe-flow {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 6px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+  .pipe-flow::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 200%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 20px,
+      rgba(245,158,11,0.3) 20px,
+      rgba(245,158,11,0.3) 40px
+    );
+    animation: flowAnim 2s linear infinite;
+  }
+  @keyframes flowAnim {
+    from { transform: translateX(0); }
+    to { transform: translateX(40px); }
+  }
+
+  /* SEGMENT NODES */
+  .segments-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    position: relative;
+    padding: 0 16px;
+  }
+  .segments-row::before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: 16px; right: 16px;
+    height: 36px;
+    background: linear-gradient(
+      180deg,
+      var(--pipe-highlight) 0%,
+      var(--pipe-color) 20%,
+      var(--pipe-shadow) 60%,
+      #222 100%
+    );
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    z-index: 0;
+  }
+  /* Flow stripe in pipe */
+  .segments-row::after {
+    content: '';
+    position: absolute;
+    top: 65px;
+    left: 16px; right: 16px;
+    height: 6px;
+    overflow: hidden;
+    background: transparent;
+    z-index: 1;
+  }
+
+  .seg-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    animation: nodeIn 0.5s ease both;
+  }
+  @keyframes nodeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* VALVE at top of each segment */
+  .valve {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    border: 3px solid var(--steel);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 6px;
+    position: relative;
+    cursor: default;
+    transition: all 0.3s;
+    background: var(--bg3);
+    box-shadow:
+      0 2px 8px rgba(0,0,0,0.4),
+      0 0 0 2px rgba(255,255,255,0.04) inset;
+  }
+  .valve::before {
+    content: '';
+    position: absolute;
+    top: -8px; left: 50%;
+    transform: translateX(-50%);
+    width: 4px; height: 8px;
+    background: var(--steel);
+    border-radius: 1px;
+  }
+  .valve::after {
+    content: '';
+    position: absolute;
+    bottom: -8px; left: 50%;
+    transform: translateX(-50%);
+    width: 4px; height: 8px;
+    background: var(--steel);
+    border-radius: 1px;
+  }
+  .valve.v1 { border-color: var(--flow5); box-shadow: 0 0 12px rgba(139,92,246,0.2); }
+  .valve.v2 { border-color: var(--flow); box-shadow: 0 0 12px rgba(245,158,11,0.2); }
+  .valve.v3 { border-color: var(--flow3); box-shadow: 0 0 12px rgba(16,185,129,0.2); }
+  .valve.v4 { border-color: var(--flow4); box-shadow: 0 0 12px rgba(59,130,246,0.2); }
+  .valve.v5 { border-color: var(--rust-light); box-shadow: 0 0 12px rgba(249,115,22,0.2); }
+  .valve:hover { transform: scale(1.08); }
+
+  .seg-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: 0.5px;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .seg-company {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    color: var(--text3);
+    text-align: center;
+    margin-top: 2px;
+    letter-spacing: 1px;
+  }
+  .seg-date {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    color: var(--text3);
+    text-align: center;
+    margin-top: 1px;
+    opacity: 0.7;
+  }
+  .seg-win {
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 6px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    font-family: 'Courier Prime', monospace;
+    line-height: 1.3;
+  }
+  .seg-win.amber { color: var(--flow); background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); }
+  .seg-win.green { color: var(--flow3); background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2); }
+  .seg-win.blue { color: var(--flow4); background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); }
+  .seg-win.orange { color: var(--rust-light); background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.2); }
+  .seg-win.purple { color: var(--flow5); background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.2); }
+
+  /* pipe connector stems (vertical) */
+  .valve-stem {
+    width: 6px;
+    height: 20px;
+    background: linear-gradient(90deg, var(--steel-light), var(--steel), var(--steel-light));
+    margin: 0 auto;
+    flex-shrink: 0;
+  }
+
+  /* ── DETAILS SECTION ─────────────────────────────────── */
+  .details-section {
+    padding: 0 48px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  .detail-card {
+    background: var(--bg2);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    padding: 20px;
+    position: relative;
+    animation: fadeUp 0.6s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .detail-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    border-radius: 2px 0 0 2px;
+  }
+  .detail-card.amber::before { background: var(--flow); }
+  .detail-card.green::before { background: var(--flow3); }
+  .detail-card.blue::before { background: var(--flow4); }
+  .detail-card.orange::before { background: var(--rust-light); }
+
+  .dc-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 12px;
+  }
+  .dc-label.amber { color: var(--flow); }
+  .dc-label.green { color: var(--flow3); }
+  .dc-label.blue { color: var(--flow4); }
+  .dc-label.orange { color: var(--rust-light); }
+
+  /* Skill bars in cards */
+  .dc-skill { margin-bottom: 10px; }
+  .dc-skill-top { display: flex; justify-content: space-between; margin-bottom: 4px; }
+  .dc-skill-name { font-size: 11px; color: var(--text2); font-weight: 500; }
+  .dc-skill-pct { font-family: 'Courier Prime', monospace; font-size: 10px; color: var(--text3); }
+  .dc-track { height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+  .dc-fill { height: 100%; border-radius: 2px; width: 0; transition: width 1.5s cubic-bezier(0.4,0,0.2,1); }
+  .dc-fill.amber { background: linear-gradient(90deg, var(--flow), #fbbf24); }
+  .dc-fill.green { background: linear-gradient(90deg, var(--flow3), #34d399); }
+  .dc-fill.blue { background: linear-gradient(90deg, var(--flow4), #60a5fa); }
+  .dc-fill.orange { background: linear-gradient(90deg, var(--rust-light), #fb923c); }
+
+  /* Tag lists */
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 6px; }
+  .dc-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--text2);
+  }
+
+  /* List items */
+  .dc-list { display: flex; flex-direction: column; gap: 8px; }
+  .dc-list-item { display: flex; gap: 8px; align-items: flex-start; }
+  .dc-bullet {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .dc-bullet.amber { background: var(--flow); }
+  .dc-bullet.green { background: var(--flow3); }
+  .dc-bullet.blue { background: var(--flow4); }
+  .dc-bullet.orange { background: var(--rust-light); }
+  .dc-list-text { font-size: 11px; color: var(--text2); line-height: 1.5; }
+  .dc-list-text strong { color: var(--text); font-weight: 600; font-size: 12px; display: block; }
+
+  /* ── BOTTOM BANNER ───────────────────────────────────── */
+  .bottom-banner {
+    margin: 0 48px 40px;
+    background: linear-gradient(135deg, rgba(201,65,12,0.12), rgba(59,130,246,0.08));
+    border: 1px solid rgba(249,115,22,0.2);
+    border-radius: 4px;
+    padding: 24px 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+  }
+  .bb-quote {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+  }
+  .bb-quote strong { color: var(--rust-light); font-weight: 600; }
+  .bb-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+  .bb-avail {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    color: var(--text3);
+    letter-spacing: 1px;
+    text-align: right;
+  }
+  .bb-avail span { color: var(--flow3); }
+
+  /* ── FOOTER ──────────────────────────────────────────── */
+  .pipe-footer {
+    background: #111113;
+    border-top: 2px solid rgba(255,255,255,0.04);
+    padding: 12px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pf-id {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    color: var(--text3);
+    letter-spacing: 2px;
+  }
+  .pf-contacts { display: flex; gap: 20px; }
+  .pf-c {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    color: var(--rust-light);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .pf-c:hover { opacity: 1; }
+
+  .seg-node:nth-child(1) { animation-delay: 0.1s; }
+  .seg-node:nth-child(2) { animation-delay: 0.2s; }
+  .seg-node:nth-child(3) { animation-delay: 0.3s; }
+  .seg-node:nth-child(4) { animation-delay: 0.4s; }
+  .seg-node:nth-child(5) { animation-delay: 0.5s; }
+
+  .detail-card:nth-child(1) { animation-delay: 0.3s; }
+  .detail-card:nth-child(2) { animation-delay: 0.4s; }
+  .detail-card:nth-child(3) { animation-delay: 0.5s; }
+  .detail-card:nth-child(4) { animation-delay: 0.6s; }
+</style>
+</head>
+<body>
+
+<!-- NAMEPLATE -->
+<header class="nameplate">
+  <div class="np-left">
+    <div class="tag">// Pipeline Profile · Oil &amp; Gas Executive · 2026</div>
+    <h1>Ali Levent <em>Kilic</em></h1>
+    <div class="subtitle">Operations &amp; Projects Leader · 20+ Years · Upstream · Midstream · Downstream</div>
+  </div>
+  <div class="np-right">
+    <div class="spec-block">
+      <div class="spec-row"><span class="bar"></span><span class="val">levent.kilic.contact@gmail.com</span></div>
+      <div class="spec-row"><span class="bar"></span><span class="val">701 300 1333</span></div>
+      <div class="spec-row"><span class="bar"></span><span class="val">linkedin.com/in/aleventkilic</span></div>
+      <div class="spec-row"><span class="bar"></span><span class="val">Leesburg, VA · US Citizen</span></div>
+    </div>
+    <div class="open-status">● VALVE OPEN — AVAILABLE NOW</div>
+  </div>
+</header>
+
+<!-- PRESSURE GAUGES -->
+<div class="gauges-row">
+  <div class="gauge">
+    <div class="gauge-val amber" id="g1">0</div>
+    <div class="gauge-label">Yrs Experience</div>
+    <div class="gauge-desc">Upstream · Mid · Downstream</div>
+  </div>
+  <div class="gauge-divider"></div>
+  <div class="gauge">
+    <div class="gauge-val orange" id="g2">$0M+</div>
+    <div class="gauge-label">Portfolio Managed</div>
+    <div class="gauge-desc">Pipeline &amp; asset programs</div>
+  </div>
+  <div class="gauge-divider"></div>
+  <div class="gauge">
+    <div class="gauge-val green" id="g3">0K+</div>
+    <div class="gauge-label">Safe Man-Hours</div>
+    <div class="gauge-desc">Zero lost-time incidents</div>
+  </div>
+  <div class="gauge-divider"></div>
+  <div class="gauge">
+    <div class="gauge-val red" id="g4">−0%</div>
+    <div class="gauge-label">OPEX Reduced</div>
+    <div class="gauge-desc">Standardized &amp; insourced</div>
+  </div>
+  <div class="gauge-divider"></div>
+  <div class="gauge">
+    <div class="gauge-val blue" id="g5">0</div>
+    <div class="gauge-label">Jurisdictions</div>
+    <div class="gauge-desc">14 states · PHMSA/DOT</div>
+  </div>
+  <div class="gauge-divider"></div>
+  <div class="gauge">
+    <div class="gauge-val purple" id="g6">$0M</div>
+    <div class="gauge-label">Revenue Created</div>
+    <div class="gauge-desc">Terminal automation system</div>
+  </div>
+</div>
+
+<!-- PIPELINE CAREER SECTION -->
+<div class="pipeline-section">
+  <div class="pipeline-header">// Career Pipeline · Concept to Commissioning · 2003–Present</div>
+
+  <div class="segments-row" id="pipelineRow">
+
+    <div class="seg-node">
+      <div class="valve-stem"></div>
+      <div class="valve v5">🏗</div>
+      <div class="valve-stem"></div>
+      <div class="seg-title">Infrastructure<br>Lead</div>
+      <div class="seg-company">Tyco · Ericsson<br>Baku · Ankara</div>
+      <div class="seg-date">2003 – 2014</div>
+      <div class="seg-win purple">BP · Offshore<br>$17M Program</div>
+    </div>
+
+    <div class="seg-node">
+      <div class="valve-stem"></div>
+      <div class="valve v2">🏭</div>
+      <div class="valve-stem"></div>
+      <div class="seg-title">Terminal &amp;<br>Ops Manager</div>
+      <div class="seg-company">BOE Midstream<br>Dickinson, ND</div>
+      <div class="seg-date">2014 – 2018</div>
+      <div class="seg-win amber">150K bbl/day<br>$5–7M Revenue</div>
+    </div>
+
+    <div class="seg-node">
+      <div class="valve-stem"></div>
+      <div class="valve v3">⚙️</div>
+      <div class="valve-stem"></div>
+      <div class="seg-title">General<br>Manager</div>
+      <div class="seg-company">BOE Midstream<br>Dickinson, ND</div>
+      <div class="seg-date">2018 – 2022</div>
+      <div class="seg-win green">900K Hrs · ZLT<br>50% OPEX Cut</div>
+    </div>
+
+    <div class="seg-node">
+      <div class="valve-stem"></div>
+      <div class="valve v4">📊</div>
+      <div class="valve-stem"></div>
+      <div class="seg-title">Manager<br>Field Projects</div>
+      <div class="seg-company">Colonial Pipeline<br>Woodbine, MD</div>
+      <div class="seg-date">2023 – 2024</div>
+      <div class="seg-win blue">$50M Portfolio<br>12% Ahead</div>
+    </div>
+
+    <div class="seg-node">
+      <div class="valve-stem"></div>
+      <div class="valve v5">🗺</div>
+      <div class="valve-stem"></div>
+      <div class="seg-title">Permitting<br>Manager</div>
+      <div class="seg-company">Colonial Pipeline<br>Alpharetta, GA</div>
+      <div class="seg-date">2024 – 2025</div>
+      <div class="seg-win orange">207 Jurisdictions<br>14 States</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DETAILS GRID -->
+<div class="details-section">
+
+  <!-- Operations Competencies -->
+  <div class="detail-card amber">
+    <div class="dc-label amber">// Operations Mastery</div>
+    <div class="dc-skill" id="skills">
+      <div class="dc-skill-top"><span class="dc-skill-name">Pipeline &amp; Terminal Ops</span><span class="dc-skill-pct">97%</span></div>
+      <div class="dc-track"><div class="dc-fill amber" data-w="97"></div></div>
+    </div>
+    <div class="dc-skill">
+      <div class="dc-skill-top"><span class="dc-skill-name">24/7 Critical Operations</span><span class="dc-skill-pct">98%</span></div>
+      <div class="dc-track"><div class="dc-fill amber" data-w="98"></div></div>
+    </div>
+    <div class="dc-skill">
+      <div class="dc-skill-top"><span class="dc-skill-name">SCADA / HMI / Control Room</span><span class="dc-skill-pct">90%</span></div>
+      <div class="dc-track"><div class="dc-fill amber" data-w="90"></div></div>
+    </div>
+    <div class="dc-skill">
+      <div class="dc-skill-top"><span class="dc-skill-name">Asset Integrity Programs</span><span class="dc-skill-pct">95%</span></div>
+      <div class="dc-track"><div class="dc-fill amber" data-w="95"></div></div>
+    </div>
+    <div class="dc-skill">
+      <div class="dc-skill-top"><span class="dc-skill-name">Brownfield / Greenfield</span><span class="dc-skill-pct">96%</span></div>
+      <div class="dc-track"><div class="dc-fill amber" data-w="96"></div></div>
+    </div>
+  </div>
+
+  <!-- Regulatory / Safety -->
+  <div class="detail-card green">
+    <div class="dc-label green">// Regulatory &amp; Safety</div>
+    <div class="dc-list">
+      <div class="dc-list-item">
+        <div class="dc-bullet green"></div>
+        <div class="dc-list-text"><strong>PHMSA / DOT Compliance</strong>Liquid pipeline safety · Audit management · Permit strategy across 14 states</div>
+      </div>
+      <div class="dc-list-item">
+        <div class="dc-bullet green"></div>
+        <div class="dc-list-text"><strong>Zero-LTI Safety Culture</strong>900K+ consecutive safe man-hours · Relentless quality bar</div>
+      </div>
+      <div class="dc-list-item">
+        <div class="dc-bullet green"></div>
+        <div class="dc-list-text"><strong>HAZOP &amp; Permit-to-Work</strong>High-risk asset reviews · Federal agency compliance</div>
+      </div>
+      <div class="dc-list-item">
+        <div class="dc-bullet green"></div>
+        <div class="dc-list-text"><strong>EPA / OSHA / FERC</strong>Cross-regulatory framework expertise</div>
+      </div>
+      <div class="dc-list-item">
+        <div class="dc-bullet green"></div>
+        <div class="dc-list-text"><strong>Environmental Programs</strong>Chemical-free pigging · $100K/yr savings · PHMSA audit passed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Digital & Tools -->
+  <div class="detail-card blue">
+    <div class="dc-label blue">// Digital &amp; Technology</div>
+    <div class="dc-skill">
+      <div class="dc-skill-top"><span class="dc-skill-name">Power BI / ArcGIS Dashboards</span><span class="dc-skill-pct">90%</span></div>
+      <div class="dc-track"><div class="dc-fill blue" data-w="90"></div></div>
+    </div>
+    <div class="dc-skill">
+      <div class="dc-skill-top"><span class="dc-skill-name">GIS / LiDAR Tracking</span><span class="dc-skill-pct">88%</span></div>
+      <div class="dc-track"><div class="dc-fill blue" data-w="88"></div></div>
+    </div>
+    <div class="dc-skill">
+      <div class="dc-skill-top"><span class="dc-skill-name">SCADA / HMI Automation</span><span class="dc-skill-pct">87%</span></div>
+      <div class="dc-track"><div class="dc-fill blue" data-w="87"></div></div>
+    </div>
+    <div style="margin-top:12px">
+      <div class="tag-cloud">
+        <span class="dc-tag">Smartsheet</span>
+        <span class="dc-tag">Planisware</span>
+        <span class="dc-tag">CAD</span>
+        <span class="dc-tag">MS Excel</span>
+        <span class="dc-tag">SharePoint</span>
+        <span class="dc-tag">Terminal Automation</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leadership & Certs -->
+  <div class="detail-card orange">
+    <div class="dc-label orange">// Leadership &amp; Certs</div>
+    <div class="dc-list">
+      <div class="dc-list-item">
+        <div class="dc-bullet orange"></div>
+        <div class="dc-list-text"><strong>US DOT Pipeline Safety – Liquid</strong>Oklahoma, USA</div>
+      </div>
+      <div class="dc-list-item">
+        <div class="dc-bullet orange"></div>
+        <div class="dc-list-text"><strong>City &amp; Guilds Level 2 – Fiber Optics</strong>North Yorkshire, UK</div>
+      </div>
+      <div class="dc-list-item">
+        <div class="dc-bullet orange"></div>
+        <div class="dc-list-text"><strong>Emerson Micro Motion / LACT</strong>Austin, TX</div>
+      </div>
+      <div class="dc-list-item">
+        <div class="dc-bullet orange"></div>
+        <div class="dc-list-text"><strong>Civil Air Patrol — 1st Lt</strong>GIS Assessment · Mission Observer</div>
+      </div>
+      <div class="dc-list-item">
+        <div class="dc-bullet orange"></div>
+        <div class="dc-list-text"><strong>Languages</strong>English · Turkish · Azerbaijani</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BOTTOM BANNER -->
+<div class="bottom-banner">
+  <div class="bb-quote">
+    Twenty years of <strong>turning valve after valve</strong> — from offshore platform controls in Baku to a $50M pipeline portfolio spanning 14 states. Every segment of my career has <strong>increased throughput, reduced pressure loss, and kept the system running clean</strong> with zero incidents.
+  </div>
+  <div class="bb-right">
+    <div class="bb-avail">📍 Virginia / MD / DC <span>// PRIMARY</span></div>
+    <div class="bb-avail">🏠 Remote · Hybrid <span>// OPEN</span></div>
+    <div class="bb-avail">✈️ Rotational US &amp; Intl <span>// OPEN</span></div>
+    <div class="bb-avail">🇺🇸 US Citizen <span>// CONFIRMED</span></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="pipe-footer">
+  <div class="pf-id">KILIC-PIPELINE-PROFILE-2026 · REV-01 · OIL &amp; GAS EDITION</div>
+  <div class="pf-contacts">
+    <a href="mailto:levent.kilic.contact@gmail.com" class="pf-c">levent.kilic.contact@gmail.com</a>
+    <a href="https://linkedin.com/in/aleventkilic" class="pf-c" target="_blank">linkedin.com/in/aleventkilic</a>
+    <span class="pf-c">701 300 1333</span>
+  </div>
+</footer>
+
+<script>
+  // Counter animation
+  function counter(el, target, fmt, dur) {
+    const s = performance.now();
+    (function f(now) {
+      const p = Math.min((now - s) / dur, 1);
+      const e = 1 - Math.pow(1 - p, 3);
+      const v = Math.round(target * e);
+      el.textContent = fmt(v);
+      if (p < 1) requestAnimationFrame(f);
+    })(s);
+  }
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        counter(document.getElementById('g1'), 20, v => v + '+', 1400);
+        counter(document.getElementById('g2'), 50, v => '$' + v + 'M+', 1400);
+        counter(document.getElementById('g3'), 900, v => v + 'K+', 1400);
+        counter(document.getElementById('g4'), 50, v => '−' + v + '%', 1400);
+        counter(document.getElementById('g5'), 207, v => v, 1400);
+        counter(document.getElementById('g6'), 7, v => '$' + v + 'M', 1400);
+
+        // skill bars
+        document.querySelectorAll('.dc-fill').forEach(b => {
+          b.style.width = b.dataset.w + '%';
+        });
+
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  obs.observe(document.querySelector('.gauges-row'));
+</script>
+
+</body>
+</html>
