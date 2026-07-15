@@ -91,6 +91,52 @@
     gap: 24px;
     align-content: center;
   }
+  .nav-valves {
+    grid-column: span 2;
+    display: flex;
+    gap: 14px;
+    justify-content: flex-end;
+    margin-bottom: 4px;
+  }
+  .valve-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .valve-wheel {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.04);
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .valve-wheel svg { width: 17px; height: 17px; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+  .valve-btn.o .valve-wheel { border-color: rgba(200,68,15,0.4); }
+  .valve-btn.o svg { color: var(--accent1); }
+  .valve-btn.b .valve-wheel { border-color: rgba(29,95,166,0.4); }
+  .valve-btn.b svg { color: var(--accent2); }
+  .valve-btn.a .valve-wheel { border-color: rgba(139,94,0,0.4); }
+  .valve-btn.a svg { color: #f5a623; }
+  .valve-btn.o:hover .valve-wheel { background: rgba(200,68,15,0.15); box-shadow: 0 0 14px rgba(200,68,15,0.4); transform: scale(1.08); }
+  .valve-btn.b:hover .valve-wheel { background: rgba(29,95,166,0.15); box-shadow: 0 0 14px rgba(29,95,166,0.4); transform: scale(1.08); }
+  .valve-btn.a:hover .valve-wheel { background: rgba(245,166,35,0.15); box-shadow: 0 0 14px rgba(245,166,35,0.4); transform: scale(1.08); }
+  .valve-btn:hover svg { transform: rotate(50deg); }
+  .valve-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    transition: color 0.2s;
+  }
+  .valve-btn:hover .valve-label { color: rgba(255,255,255,0.85); }
 
   .stat-block { }
   .stat-num {
@@ -498,6 +544,11 @@
     <div class="headline">Sr. Operations &amp; Project Management Leader<br>Upstream · Midstream · Downstream · 20+ Years</div>
   </div>
   <div class="masthead-right">
+    <div class="nav-valves">
+      <a href="https://aleventkilic.github.io/OGopener/" class="valve-btn o" title="10-Second Resume" target="_blank" rel="noopener"><span class="valve-wheel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9.25"/><circle cx="12" cy="12" r="2.75"/><line x1="12" y1="2.5" x2="12" y2="8.5"/><line x1="12" y1="15.5" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="8.5" y2="12"/><line x1="15.5" y1="12" x2="21.5" y2="12"/></svg></span><span class="valve-label">Opener</span></a>
+      <a href="/Oilandgasimpact.html" class="valve-btn b" title="Leadership Dashboard" target="_blank" rel="noopener"><span class="valve-wheel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9.25"/><circle cx="12" cy="12" r="2.75"/><line x1="12" y1="2.5" x2="12" y2="8.5"/><line x1="12" y1="15.5" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="8.5" y2="12"/><line x1="15.5" y1="12" x2="21.5" y2="12"/></svg></span><span class="valve-label">Impact</span></a>
+      <a href="/oilandgaspipeline.html" class="valve-btn a" title="Pipeline Profile" target="_blank" rel="noopener"><span class="valve-wheel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9.25"/><circle cx="12" cy="12" r="2.75"/><line x1="12" y1="2.5" x2="12" y2="8.5"/><line x1="12" y1="15.5" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="8.5" y2="12"/><line x1="15.5" y1="12" x2="21.5" y2="12"/></svg></span><span class="valve-label">Pipeline</span></a>
+    </div>
     <div class="stat-block">
       <div class="stat-num" id="c1">0</div>
       <div class="stat-label">Years delivering complex<br>oil &amp; gas programs globally</div>

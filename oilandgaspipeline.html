@@ -96,6 +96,51 @@
   .np-right {
     text-align: right;
   }
+  .nav-valves {
+    display: flex;
+    gap: 14px;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+  }
+  .valve-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .valve-wheel {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid var(--steel);
+    background: var(--bg3);
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .valve-wheel svg { width: 17px; height: 17px; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+  .valve-btn.amber .valve-wheel { border-color: var(--flow); }
+  .valve-btn.amber svg { color: var(--flow); }
+  .valve-btn.blue .valve-wheel { border-color: var(--flow4); }
+  .valve-btn.blue svg { color: var(--flow4); }
+  .valve-btn.orange .valve-wheel { border-color: var(--rust-light); }
+  .valve-btn.orange svg { color: var(--rust-light); }
+  .valve-btn.amber:hover .valve-wheel { background: rgba(245,158,11,0.15); box-shadow: 0 0 14px rgba(245,158,11,0.4); transform: scale(1.08); }
+  .valve-btn.blue:hover .valve-wheel { background: rgba(59,130,246,0.15); box-shadow: 0 0 14px rgba(59,130,246,0.4); transform: scale(1.08); }
+  .valve-btn.orange:hover .valve-wheel { background: rgba(249,115,22,0.15); box-shadow: 0 0 14px rgba(249,115,22,0.4); transform: scale(1.08); }
+  .valve-btn:hover svg { transform: rotate(50deg); }
+  .valve-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text3);
+    transition: color 0.2s;
+  }
+  .valve-btn:hover .valve-label { color: var(--text); }
   .spec-block {
     display: flex;
     flex-direction: column;
@@ -597,6 +642,11 @@
     <div class="subtitle">Operations &amp; Projects Leader · 20+ Years · Upstream · Midstream · Downstream</div>
   </div>
   <div class="np-right">
+    <div class="nav-valves">
+      <a href="https://aleventkilic.github.io/OGopener/" class="valve-btn orange" title="10-Second Resume" target="_blank" rel="noopener"><span class="valve-wheel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9.25"/><circle cx="12" cy="12" r="2.75"/><line x1="12" y1="2.5" x2="12" y2="8.5"/><line x1="12" y1="15.5" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="8.5" y2="12"/><line x1="15.5" y1="12" x2="21.5" y2="12"/></svg></span><span class="valve-label">Opener</span></a>
+      <a href="/Oilandgasimpact.html" class="valve-btn amber" title="Leadership Dashboard" target="_blank" rel="noopener"><span class="valve-wheel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9.25"/><circle cx="12" cy="12" r="2.75"/><line x1="12" y1="2.5" x2="12" y2="8.5"/><line x1="12" y1="15.5" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="8.5" y2="12"/><line x1="15.5" y1="12" x2="21.5" y2="12"/></svg></span><span class="valve-label">Impact</span></a>
+      <a href="/oilandgashybrid.html" class="valve-btn blue" title="Visual Profile" target="_blank" rel="noopener"><span class="valve-wheel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9.25"/><circle cx="12" cy="12" r="2.75"/><line x1="12" y1="2.5" x2="12" y2="8.5"/><line x1="12" y1="15.5" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="8.5" y2="12"/><line x1="15.5" y1="12" x2="21.5" y2="12"/></svg></span><span class="valve-label">Hybrid</span></a>
+    </div>
     <div class="spec-block">
       <div class="spec-row"><span class="bar"></span><span class="val">levent.kilic.contact@gmail.com</span></div>
       <div class="spec-row"><span class="bar"></span><span class="val">701 300 1333</span></div>
